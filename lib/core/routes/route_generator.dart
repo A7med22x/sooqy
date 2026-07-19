@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sooqy/core/routes/routes.dart';
 import 'package:sooqy/core/search_screen.dart';
 import 'package:sooqy/features/auth/presentation/screens/login_screen.dart';
+import 'package:sooqy/features/auth/presentation/screens/register_screen.dart';
 import 'package:sooqy/features/home/presentation/screens/home_screen.dart';
 import 'package:sooqy/features/onBoarding/presentation/screens/on_boarding_screen.dart';
 
@@ -14,8 +15,8 @@ class RouteGenerator {
         );
       case Routes.login:
         return MaterialPageRoute(builder: (context) => const LoginScreen());
-      // case Routes.register:
-      //   return MaterialPageRoute(builder: (context) => const RegisterScreen());
+      case Routes.register:
+        return MaterialPageRoute(builder: (context) => const RegisterScreen());
       // case Routes.forgetPassword:
       //   return MaterialPageRoute(
       //     builder: (context) => const ForgetPasswordScreen(),

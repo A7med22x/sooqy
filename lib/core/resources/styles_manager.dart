@@ -1,0 +1,35 @@
+import 'package:flutter/material.dart';
+import 'package:sooqy/core/resources/color_manager.dart';
+import 'package:sooqy/core/resources/font_manager.dart';
+
+
+TextStyle _getTextStyle(double fontSize, FontWeight fontWeight, Color color) =>
+    TextStyle(
+      fontSize: fontSize,
+      fontFamily: FontConstants.fontFamily,
+      color: color,
+      fontWeight: fontWeight,
+    );
+
+TextStyle getLightStyle({double? fontSize, required Color color}) =>
+    _getTextStyle(fontSize ?? FontSize.s12, FontWeightManager.light, color);
+
+TextStyle getRegularStyle({double? fontSize, required Color color}) =>
+    _getTextStyle(fontSize ?? FontSize.s18, FontWeightManager.regular, color);
+
+TextStyle getMediumStyle({double? fontSize, required Color color}) =>
+    _getTextStyle(fontSize ?? FontSize.s12, FontWeightManager.medium, color);
+
+TextStyle getSemiBoldStyle({double? fontSize, required Color color}) =>
+    _getTextStyle(fontSize ?? FontSize.s15, FontWeightManager.semiBold, color);
+
+TextStyle getBoldStyle({double? fontSize, required Color color}) =>
+    _getTextStyle(fontSize ?? FontSize.s24, FontWeightManager.bold, color);
+
+TextStyle getTextWithLine() => TextStyle(
+  color: ColorManager.steelGray,
+  fontSize: FontSize.s12,
+  fontWeight: FontWeight.w400,
+  decoration: TextDecoration.lineThrough,
+  decorationColor: ColorManager.steelGray,
+);

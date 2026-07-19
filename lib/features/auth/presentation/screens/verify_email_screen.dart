@@ -5,6 +5,7 @@ import 'package:sooqy/core/resources/styles_manager.dart';
 import 'package:sooqy/core/routes/routes.dart';
 import 'package:sooqy/core/utils/ui_utils.dart';
 import 'package:sooqy/core/widgets/custom_elevated_button.dart';
+import 'package:sooqy/features/auth/data/models/resend_otp_request.dart';
 import 'package:sooqy/features/auth/data/models/verify_email_request.dart';
 import 'package:sooqy/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:sooqy/features/auth/presentation/cubit/auth_states.dart';
@@ -122,7 +123,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                     const SizedBox(width: 12),
                     InkWell(
                       onTap: () {
-                        //context.read<AuthCubit>().resendOtp(widget.email);
+                        context.read<AuthCubit>().resendOtp(ResendOtpRequest(email: widget.email));
                       },
                       child: Text(
                         'Resend Code',

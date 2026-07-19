@@ -7,6 +7,7 @@ import 'package:sooqy/core/utils/ui_utils.dart';
 import 'package:sooqy/core/utils/validators.dart';
 import 'package:sooqy/core/widgets/custom_elevated_button.dart';
 import 'package:sooqy/core/widgets/custom_text_field.dart';
+import 'package:sooqy/features/auth/data/models/forget_password_request.dart';
 import 'package:sooqy/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:sooqy/features/auth/presentation/cubit/auth_states.dart';
 import 'package:sooqy/features/auth/presentation/widgets/header_section.dart';
@@ -84,7 +85,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     onTap: () {
                       if (_formKey.currentState!.validate()) {
                         context.read<AuthCubit>().forgotPassword(
-                          _emailController.text,
+                          ForgetPasswordRequest(email: _emailController.text)
                         );
                       }
                     },

@@ -1,14 +1,11 @@
-class VerifyEmailRequest {
+class ForgetPasswordRequest {
   final String email;
-  final String code;
 
-  VerifyEmailRequest({
+  ForgetPasswordRequest({
     required this.email,
-    required this.code,
   });
 
   Map<String, dynamic> toJson() => {
         "email": email,
-        "otp": code,
       };
 }

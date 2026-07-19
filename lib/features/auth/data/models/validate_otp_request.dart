@@ -1,8 +1,8 @@
-class VerifyEmailRequest {
+class ValidateOtpRequest {
   final String email;
   final String code;
 
-  VerifyEmailRequest({
+  ValidateOtpRequest({
     required this.email,
     required this.code,
   });

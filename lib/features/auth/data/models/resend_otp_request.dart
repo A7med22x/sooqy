@@ -1,14 +1,11 @@
-class VerifyEmailRequest {
+class ResendOtpRequest {
   final String email;
-  final String code;
 
-  VerifyEmailRequest({
+  ResendOtpRequest({
     required this.email,
-    required this.code,
   });
 
   Map<String, dynamic> toJson() => {
         "email": email,
-        "otp": code,
       };
 }

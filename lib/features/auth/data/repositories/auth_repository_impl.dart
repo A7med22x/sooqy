@@ -4,8 +4,12 @@ import 'package:sooqy/core/errors/exceptions.dart';
 import 'package:sooqy/core/errors/failure.dart';
 import 'package:sooqy/features/auth/data/data_sources/local/auth_local_data_source.dart';
 import 'package:sooqy/features/auth/data/data_sources/remote/auth_remote_data_source.dart';
+import 'package:sooqy/features/auth/data/models/forget_password_request.dart';
 import 'package:sooqy/features/auth/data/models/login_request.dart';
 import 'package:sooqy/features/auth/data/models/register_request.dart';
+import 'package:sooqy/features/auth/data/models/resend_otp_request.dart';
+import 'package:sooqy/features/auth/data/models/reset_password_request.dart';
+import 'package:sooqy/features/auth/data/models/validate_otp_request.dart';
 import 'package:sooqy/features/auth/data/models/verify_email_request.dart';
 import 'package:sooqy/features/auth/domain/repositories/auh_repository.dart';
 
@@ -49,9 +53,39 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, void>> forgotPassword({required String email}) async {
+  Future<Either<Failure, void>> forgotPassword(ForgetPasswordRequest request) async {
     try {
-      await _remoteDataSource.forgotPassword(email: email);
+      await _remoteDataSource.forgotPassword(request);
+      return Right(null);
+    } on AppException catch (exception) {
+      return left(Failure(message: exception.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> resendOtp(ResendOtpRequest request) async {
+    try {
+      await _remoteDataSource.resendOtp(request);
+      return Right(null);
+    } on AppException catch (exception) {
+      return left(Failure(message: exception.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> validateOtp(ValidateOtpRequest request) async {
+    try {
+      await _remoteDataSource.validateOtp(request);
+      return Right(null);
+    } on AppException catch (exception) {
+      return left(Failure(message: exception.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> resetPassword(ResetPasswordRequest request) async {
+    try {
+      await _remoteDataSource.resetPassword(request);
       return Right(null);
     } on AppException catch (exception) {
       return left(Failure(message: exception.message));

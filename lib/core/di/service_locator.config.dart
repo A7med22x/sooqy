@@ -30,6 +30,10 @@ import 'package:sooqy/features/auth/domain/use_cases/forgot_password.dart'
     as _i478;
 import 'package:sooqy/features/auth/domain/use_cases/login.dart' as _i683;
 import 'package:sooqy/features/auth/domain/use_cases/register.dart' as _i70;
+import 'package:sooqy/features/auth/domain/use_cases/resend_otp.dart' as _i651;
+import 'package:sooqy/features/auth/domain/use_cases/reset_password.dart'
+    as _i412;
+import 'package:sooqy/features/auth/domain/use_cases/validate_otp.dart' as _i32;
 import 'package:sooqy/features/auth/domain/use_cases/verify_email.dart'
     as _i174;
 import 'package:sooqy/features/auth/presentation/cubit/auth_cubit.dart'
@@ -67,6 +71,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i70.Register>(
       () => _i70.Register(gh<_i534.AuthRepository>()),
     );
+    gh.singleton<_i651.ResendOtp>(
+      () => _i651.ResendOtp(gh<_i534.AuthRepository>()),
+    );
+    gh.singleton<_i412.ResetPassword>(
+      () => _i412.ResetPassword(gh<_i534.AuthRepository>()),
+    );
+    gh.singleton<_i32.ValidateOtp>(
+      () => _i32.ValidateOtp(gh<_i534.AuthRepository>()),
+    );
     gh.singleton<_i174.VerifyEmail>(
       () => _i174.VerifyEmail(gh<_i534.AuthRepository>()),
     );
@@ -76,6 +89,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i683.Login>(),
         gh<_i174.VerifyEmail>(),
         gh<_i478.ForgotPassword>(),
+        gh<_i651.ResendOtp>(),
+        gh<_i32.ValidateOtp>(),
+        gh<_i412.ResetPassword>(),
       ),
     );
     return this;

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sooqy/core/resources/color_manager.dart';
 import 'package:sooqy/core/resources/styles_manager.dart';
+import 'package:sooqy/core/routes/routes.dart';
+import 'package:sooqy/core/utils/ui_utils.dart';
 import 'package:sooqy/core/utils/validators.dart';
 import 'package:sooqy/core/widgets/custom_elevated_button.dart';
 import 'package:sooqy/core/widgets/custom_text_field.dart';
+import 'package:sooqy/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:sooqy/features/auth/presentation/cubit/auth_states.dart';
 import 'package:sooqy/features/auth/presentation/widgets/header_section.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
@@ -58,13 +63,35 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   validation: Validator.validateEmail,
                 ),
                 const SizedBox(height: 32),
-                CustomElevatedButton(
-                  innerPadding: const EdgeInsets.all(16),
-                  label: 'Reset Password',
-                  onTap: () {},
-                  isStadiumBorder: false,
-                  radius: 16,
-                  backgroundColor: ColorManager.green,
+                BlocListener<AuthCubit, AuthState>(
+                  listener: (context, state) {
+                    if (state is ForgotPasswordLoading) {
+                      UIUtils.showLoading(context);
+                    } else if (state is ForgotPasswordSuccess) {
+                      UIUtils.hideLoading(context);
+                      Navigator.of(context).pushReplacementNamed(
+                        Routes.verifyCode,
+                        arguments: _emailController.text,
+                      );
+                    } else if (state is ForgotPasswordError) {
+                      UIUtils.hideLoading(context);
+                      UIUtils.showMessage(state.message);
+                    }
+                  },
+                  child: CustomElevatedButton(
+                    innerPadding: const EdgeInsets.all(16),
+                    label: 'Reset Password',
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        context.read<AuthCubit>().forgotPassword(
+                          _emailController.text,
+                        );
+                      }
+                    },
+                    isStadiumBorder: false,
+                    radius: 16,
+                    backgroundColor: ColorManager.green,
+                  ),
                 ),
               ],
             ),

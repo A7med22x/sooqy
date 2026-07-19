@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sooqy/core/resources/assets_manager.dart';
 import 'package:sooqy/core/resources/color_manager.dart';
 import 'package:sooqy/core/resources/styles_manager.dart';
 import 'package:sooqy/core/routes/routes.dart';
+import 'package:sooqy/core/utils/ui_utils.dart';
 import 'package:sooqy/core/utils/validators.dart';
 import 'package:sooqy/core/widgets/custom_elevated_button.dart';
 import 'package:sooqy/core/widgets/custom_text_field.dart';
+import 'package:sooqy/features/auth/data/models/login_request.dart';
+import 'package:sooqy/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:sooqy/features/auth/presentation/cubit/auth_states.dart';
 import 'package:sooqy/features/auth/presentation/widgets/header_section.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -76,23 +81,36 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 const SizedBox(height: 32),
-                CustomElevatedButton(
-                 innerPadding: const EdgeInsets.all(16),
-                 label: 'Login',
-                 onTap: () {
-                   if (_formKey.currentState!.validate()) {
-                    //  context.read<AuthCubit>().login(
-                    //    LoginRequest(
-                    //      email: _emailController.text,
-                    //      password: _passwordController.text,
-                    //    ),
-                    //  );
-                   }
-                 },
-                 isStadiumBorder: false,
-                 radius: 16,
-                 backgroundColor: ColorManager.green,
-                                  ),
+                BlocListener<AuthCubit, AuthState>(
+                  listener: (context, state) {
+                    if (state is LoginLoading) {
+                      UIUtils.showLoading(context);
+                    } else if (state is LoginSuccess) {
+                      UIUtils.hideLoading(context);
+                      Navigator.of(context).pushReplacementNamed(Routes.home);
+                    } else if (state is LoginError) {
+                      UIUtils.hideLoading(context);
+                      UIUtils.showMessage(state.message);
+                    }
+                  },
+                  child: CustomElevatedButton(
+                    innerPadding: const EdgeInsets.all(16),
+                    label: 'Login',
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        context.read<AuthCubit>().login(
+                          LoginRequest(
+                            email: _emailController.text,
+                            password: _passwordController.text,
+                          ),
+                        );
+                      }
+                    },
+                    isStadiumBorder: false,
+                    radius: 16,
+                    backgroundColor: ColorManager.green,
+                  ),
+                ),
                 const SizedBox(height: 40),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

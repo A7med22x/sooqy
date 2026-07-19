@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sooqy/core/resources/assets_manager.dart';
 import 'package:sooqy/core/resources/color_manager.dart';
-import 'package:sooqy/core/resources/font_manager.dart';
 import 'package:sooqy/core/resources/styles_manager.dart';
 import 'package:sooqy/core/routes/routes.dart';
 import 'package:sooqy/core/utils/validators.dart';
-import 'package:sooqy/core/widgets/custom_auto_size_text.dart';
 import 'package:sooqy/core/widgets/custom_elevated_button.dart';
 import 'package:sooqy/core/widgets/custom_text_field.dart';
+import 'package:sooqy/features/auth/presentation/widgets/header_section.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -43,20 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               children: [
                 SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: .center,
-                  children: [
-                    CustomAutoSizeText(
-                      data: 'welcome to',
-                      textStyle: getBoldStyle(color: ColorManager.gradiant1),
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      'Sooqy',
-                      style: getBoldStyle(color: ColorManager.green, fontSize: FontSize.s36),
-                    ),
-                  ],
-                ),
+                const HeaderSection(),
                 const SizedBox(height: 32),
                 CustomTextField(
                   borderBackgroundColor: ColorManager.border,

@@ -130,6 +130,6 @@ class PageViewItem extends StatelessWidget {
 
   void onFinish(BuildContext context) {
     AppPreferences.setOnboardingViewed(true);
-    Navigator.of(context).pushReplacementNamed(Routes.home);
+    Navigator.of(context).pushReplacementNamed(Routes.login);
   }
 }

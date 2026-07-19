@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sooqy/core/app_preferences.dart';
 import 'package:sooqy/core/app_theme.dart';
 import 'package:sooqy/core/routes/route_generator.dart';
 import 'package:sooqy/core/routes/routes.dart';
@@ -21,7 +22,7 @@ class SooqyApp extends StatelessWidget {
       builder: (_, _) => MaterialApp(
         debugShowCheckedModeBanner: false,
         onGenerateRoute: RouteGenerator.getRoute,
-        initialRoute: Routes.home,
+        initialRoute: AppPreferences.onboardingViewed ? Routes.home : Routes.onBoarding,
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         themeMode: ThemeMode.light,

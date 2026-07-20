@@ -14,46 +14,33 @@ class CategoriesTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: TitleTextOfAppBar(text: 'Categories')),
-      body: CustomScrollView(
-        slivers: [
-          // search field
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: Column(
-                children: [
-                  SizedBox(height: 16.h),
-                  GestureDetector(
-                    onTap: () => Navigator.pushNamed(context, Routes.search),
-                    child: SearchTextField(
-                      enabled: false,
-                      hint:
-                          'What are you looking for?', //hint: S.of(context).homeSearchHint,
-                    ),
-                  ),
-                ],
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 16.h),
+            GestureDetector(
+              onTap: () => Navigator.pushNamed(context, Routes.search),
+              child: SearchTextField(
+                enabled: false,
+                hint:
+                    'What are you looking for?', //hint: S.of(context).homeSearchHint,
               ),
             ),
-          ),
-
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsetsDirectional.all(16.w),
-              child: Text(
-                'Our Categories',
-                style: getBoldStyle(
-                  color: ColorManager.backgroundDark,
-                  fontSize: 16.sp,
-                ),
+            SizedBox(height: 16.h),
+            Text(
+              'Our Categories',
+              style: getBoldStyle(
+                color: ColorManager.backgroundDark,
+                fontSize: 16.sp,
               ),
-              //Text(S.current.ourProduct, style: TextStyles.bold16),
             ),
-          ),
-
-          const CategoriesListView(),
-
-          SliverToBoxAdapter(child: SizedBox(height: 16.h)),
-        ],
+            SizedBox(height: 16.h),
+            Expanded(child: const CategoriesListView()),
+            SizedBox(height: 16.h),
+          ],
+        ),
       ),
     );
   }

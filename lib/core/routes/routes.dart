@@ -8,4 +8,7 @@ class Routes {
   static const newPassword = 'New Password';
   static const home = 'home';
   static const search = 'search';
+  static const categoryProducts = 'categoryProducts';
+  static const productDetails = 'productDetails';
+  static const review = 'review';
 }

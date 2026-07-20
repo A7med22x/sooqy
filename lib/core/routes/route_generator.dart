@@ -7,6 +7,7 @@ import 'package:sooqy/features/auth/presentation/screens/new_password_screen.dar
 import 'package:sooqy/features/auth/presentation/screens/register_screen.dart';
 import 'package:sooqy/features/auth/presentation/screens/verify_code_screen.dart';
 import 'package:sooqy/features/auth/presentation/screens/verify_email_screen.dart';
+import 'package:sooqy/features/categories/presentation/screens/category_products_screen.dart';
 import 'package:sooqy/features/home/presentation/screens/home_screen.dart';
 import 'package:sooqy/features/onBoarding/presentation/screens/on_boarding_screen.dart';
 
@@ -46,6 +47,12 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (context) => VerifyEmailScreen(email: email),
         );
+        case Routes.categoryProducts:
+        return MaterialPageRoute(builder: (_) => const CategoryProductsScreen());  
+      // case Routes.productDetails:
+      //   return MaterialPageRoute(builder: (_) => const ProductDatailsScreen());
+      // case Routes.review:
+      //   return MaterialPageRoute(builder: (_) => const ReviewScreen());   
       default:
         return null;
     }

@@ -33,8 +33,7 @@ class CategoryProductsScreen extends StatelessWidget {
                   SearchTextField(
                     enabled: false,
                     hint:
-                        'Search........', //hint: S.of(context).homeSearchHint,
-                  ),
+                        'Search........',                   ),
                 ],
               ),
             ),

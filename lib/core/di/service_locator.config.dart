@@ -38,6 +38,18 @@ import 'package:sooqy/features/auth/domain/use_cases/verify_email.dart'
     as _i174;
 import 'package:sooqy/features/auth/presentation/cubit/auth_cubit.dart'
     as _i445;
+import 'package:sooqy/features/categories/data/data_sources/remote/categories_remote_data_source.dart'
+    as _i883;
+import 'package:sooqy/features/categories/data/data_sources/remote/categories_remote_data_source_impl.dart'
+    as _i24;
+import 'package:sooqy/features/categories/data/repositories/category_repository_impl.dart'
+    as _i810;
+import 'package:sooqy/features/categories/domain/repositories/category_repository.dart'
+    as _i775;
+import 'package:sooqy/features/categories/domain/use_cases/get_categories_use_case.dart'
+    as _i651;
+import 'package:sooqy/features/categories/presentation/cubit/category_cubit.dart'
+    as _i421;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -52,17 +64,30 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.singleton<_i361.Dio>(() => registerModule.dio);
+    gh.lazySingleton<_i883.CategoriesRemoteDataSource>(
+      () => _i24.CategoriesRemoteDataSourceImpl(gh<_i361.Dio>()),
+    );
     gh.singleton<_i490.AuthRemoteDataSource>(
       () => _i186.AuthApiRemoteDataSource(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i775.CategoryRepository>(
+      () =>
+          _i810.CategoryRepositoryImpl(gh<_i883.CategoriesRemoteDataSource>()),
+    );
     gh.singleton<_i196.AuthLocalDataSource>(
       () => _i38.AuthSharedPrefLocalDataSource(gh<_i460.SharedPreferences>()),
+    );
+    gh.lazySingleton<_i651.GetCategoriesUseCase>(
+      () => _i651.GetCategoriesUseCase(gh<_i775.CategoryRepository>()),
     );
     gh.singleton<_i534.AuthRepository>(
       () => _i569.AuthRepositoryImpl(
         gh<_i490.AuthRemoteDataSource>(),
         gh<_i196.AuthLocalDataSource>(),
       ),
+    );
+    gh.lazySingleton<_i421.CategoryCubit>(
+      () => _i421.CategoryCubit(gh<_i651.GetCategoriesUseCase>()),
     );
     gh.singleton<_i478.ForgotPassword>(
       () => _i478.ForgotPassword(gh<_i534.AuthRepository>()),

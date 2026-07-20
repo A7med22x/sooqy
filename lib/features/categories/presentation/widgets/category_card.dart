@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sooqy/core/resources/color_manager.dart';
 import 'package:sooqy/core/resources/styles_manager.dart';
+import 'package:sooqy/features/categories/domain/entities/category_entity.dart';
 
 class CategoryCard extends StatelessWidget {
-  const CategoryCard({super.key});
+  const CategoryCard(this.category, {super.key});
+  final CategoryEntity category;
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +16,7 @@ class CategoryCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.r),
         color: ColorManager.transparent,
-        border: Border.all(
-          color: ColorManager.gradiant1,
-          width: 2.w,
-        ),
+        border: Border.all(color: ColorManager.gradiant1, width: 2.w),
       ),
       child: Column(
         mainAxisAlignment: .center,
@@ -28,9 +27,10 @@ class CategoryCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
               clipBehavior: Clip.antiAlias,
               child: CachedNetworkImage(
-                fit: .scaleDown,
                 height: MediaQuery.sizeOf(context).height * 0.15,
+                fit: .scaleDown,
                 imageUrl:
+                    category.coverPictureUrl ??
                     'https://www.shutterstock.com/image-vector/error-500-page-empty-symbol-260nw-1711106146.jpg',
                 placeholder: (context, url) => const Center(
                   child: CircularProgressIndicator(
@@ -45,7 +45,7 @@ class CategoryCard extends StatelessWidget {
           ),
           SizedBox(height: 8.h),
           Text(
-            "category.name",
+            category.name,
             style: getBoldStyle(
               color: ColorManager.backgroundDark,
               fontSize: 16.sp,

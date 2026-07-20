@@ -27,17 +27,11 @@ class _SearchTextFieldState extends State<SearchTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
+      height: 50.h,
       decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(4)),
-        boxShadow: [
-          BoxShadow(
-            color: ColorManager.white, //Color.fromARGB(11, 0, 0, 0)
-            blurRadius: 9,
-            offset: Offset(0, 2),
-          ),
-        ],
+        borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
+      clipBehavior: Clip.antiAlias,
       child: TextField(
         onTap: () {
           if (!widget.enabled) {

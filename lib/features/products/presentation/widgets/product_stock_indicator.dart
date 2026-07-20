@@ -17,7 +17,7 @@ class ProductStockIndicator extends StatelessWidget {
         borderRadius: BorderRadius.circular(4),
       ),
       child: Text(
-        '32 Pieces Available', //"متوفر ${product.stock} قطعة",
+        '32 Pieces Available',
         textAlign: .center,
         style: getSemiBoldStyle(color: ColorManager.white),
       ),

@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:sooqy/core/widgets/product_card.dart';
+import 'package:sooqy/core/routes/routes.dart';
+import 'package:sooqy/features/products/presentation/widgets/product_card.dart';
 
 class ProductsListView extends StatelessWidget {
   const ProductsListView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SliverGrid.builder(
+    return GridView.builder(
       itemCount: 30,
       gridDelegate: customDelegate(),
       itemBuilder: (context, index) {
         return InkWell(
           onTap: () {
-            // Navigator.pushNamed(
-            //   context,
-            //   Routes.productDetails,
-            //   //arguments: category.id
-            //   //arguments: categories[index].name,
-            // );
+            Navigator.pushNamed(
+              context,
+              Routes.productDetails,
+              //arguments: category.id
+              //arguments: categories[index].name,
+            );
           },
           child: ProductCard(),
         );

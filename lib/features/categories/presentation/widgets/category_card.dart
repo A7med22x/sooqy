@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sooqy/core/resources/color_manager.dart';
 import 'package:sooqy/core/resources/styles_manager.dart';
-import 'package:sooqy/features/categories/domain/entities/category_entity.dart';
+import 'package:sooqy/features/categories/domain/entities/category.dart';
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard(this.category, {super.key});
-  final CategoryEntity category;
+  final Category category;
 
   @override
   Widget build(BuildContext context) {
@@ -19,27 +19,25 @@ class CategoryCard extends StatelessWidget {
         border: Border.all(color: ColorManager.gradiant1, width: 2.w),
       ),
       child: Column(
-        mainAxisAlignment: .center,
+        mainAxisAlignment: .start,
         children: [
-          Padding(
-            padding: EdgeInsets.all(15.sp),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              clipBehavior: Clip.antiAlias,
-              child: CachedNetworkImage(
-                height: MediaQuery.sizeOf(context).height * 0.15,
-                fit: .scaleDown,
-                imageUrl:
-                    category.coverPictureUrl ??
-                    'https://www.shutterstock.com/image-vector/error-500-page-empty-symbol-260nw-1711106146.jpg',
-                placeholder: (context, url) => const Center(
-                  child: CircularProgressIndicator(
-                    color: ColorManager.primaryColor,
-                  ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            clipBehavior: Clip.antiAlias,
+            child: CachedNetworkImage(
+              height: MediaQuery.sizeOf(context).height * 0.15,
+              width: .infinity,
+              fit: .cover,
+              imageUrl:
+                  category.coverPictureUrl ??
+                  'https://www.shutterstock.com/image-vector/error-500-page-empty-symbol-260nw-1711106146.jpg',
+              placeholder: (context, url) => const Center(
+                child: CircularProgressIndicator(
+                  color: ColorManager.primaryColor,
                 ),
-                errorWidget: (context, url, error) => const Center(
-                  child: Icon(Icons.image_not_supported_outlined, size: 50),
-                ),
+              ),
+              errorWidget: (context, url, error) => const Center(
+                child: Icon(Icons.image_not_supported_outlined, size: 50),
               ),
             ),
           ),

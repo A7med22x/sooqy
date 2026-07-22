@@ -16,9 +16,9 @@ class IconsBack extends StatelessWidget {
           border: Border.all(color: ColorManager.white),
         ),
         child: Icon(
-          size: 16,
+          size: 20,
           Icons.arrow_back_ios_new_rounded,
-          color: Theme.of(context).textTheme.bodyLarge!.color,
+          color: ColorManager.black,
         ),
       ),
     );

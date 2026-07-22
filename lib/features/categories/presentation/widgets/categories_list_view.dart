@@ -31,9 +31,7 @@ class CategoriesListView extends StatelessWidget {
                     Navigator.pushNamed(
                       context,
                       Routes.categoryProducts,
-                      arguments: state.categories[index].id,
-                      //arguments:category.id
-                      //arguments: categories[index].name,
+                      arguments: state.categories[index].name,
                     );
                   },
                   child: CategoryCard(state.categories[index]),
@@ -41,7 +39,7 @@ class CategoriesListView extends StatelessWidget {
               },
             );
           } else {
-            return const SliverToBoxAdapter(child: SizedBox.shrink());
+            return const SizedBox();
           }
         },
       ),
@@ -51,9 +49,8 @@ class CategoriesListView extends StatelessWidget {
   SliverGridDelegateWithFixedCrossAxisCount customDelegate() {
     return const SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,
-      crossAxisSpacing: 16,
+      crossAxisSpacing: 8,
       mainAxisSpacing: 8,
-      childAspectRatio: 163 / 200,
     );
   }
 }

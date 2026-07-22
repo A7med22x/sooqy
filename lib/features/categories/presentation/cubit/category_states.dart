@@ -1,4 +1,4 @@
-import 'package:sooqy/features/categories/domain/entities/category_entity.dart';
+import 'package:sooqy/features/categories/domain/entities/category.dart';
 
 abstract class CategoryState {}
 
@@ -6,7 +6,7 @@ class CategoryInitial extends CategoryState {}
 
 class GetCategoriesLoading extends CategoryState {}
 class GetCategoriesSuccess extends CategoryState {
-  final List<CategoryEntity> categories;
+  final List<Category> categories;
   GetCategoriesSuccess(this.categories);
 }
 

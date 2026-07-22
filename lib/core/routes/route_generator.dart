@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sooqy/features/products/domain/entities/product.dart';
 import 'package:sooqy/features/products/presentation/screens/product_datails_screen.dart';
 import 'package:sooqy/core/review_screen.dart';
 import 'package:sooqy/core/routes/routes.dart';
@@ -50,11 +51,13 @@ class RouteGenerator {
           builder: (context) => VerifyEmailScreen(email: email),
         );
       case Routes.categoryProducts:
+      final categoryName = settings.arguments as String;
         return MaterialPageRoute(
-          builder: (_) => const CategoryProductsScreen(),
+          builder: (_) => CategoryProductsScreen(categoryName: categoryName,),
         );
       case Routes.productDetails:
-        return MaterialPageRoute(builder: (_) => const ProductDatailsScreen());
+        final product = settings.arguments as Product;
+        return MaterialPageRoute(builder: (_) => ProductDatailsScreen(product: product,));
       case Routes.review:
         return MaterialPageRoute(builder: (_) => const ReviewScreen());
       default:

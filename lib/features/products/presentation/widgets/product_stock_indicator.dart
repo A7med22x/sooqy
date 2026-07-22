@@ -1,10 +1,12 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sooqy/core/resources/color_manager.dart';
 import 'package:sooqy/core/resources/styles_manager.dart';
 
 class ProductStockIndicator extends StatelessWidget {
-  const ProductStockIndicator({super.key});
+  const ProductStockIndicator({super.key, required this.stock});
+  final String stock; 
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +18,11 @@ class ProductStockIndicator extends StatelessWidget {
         color: ColorManager.secColor,
         borderRadius: BorderRadius.circular(4),
       ),
-      child: Text(
-        '32 Pieces Available',
+      child: AutoSizeText(
+        '$stock Pieces Available',
         textAlign: .center,
         style: getSemiBoldStyle(color: ColorManager.white),
+        maxLines: 1,
       ),
     );
   }

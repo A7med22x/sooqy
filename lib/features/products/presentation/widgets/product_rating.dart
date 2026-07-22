@@ -8,11 +8,13 @@ class ProductRating extends StatelessWidget {
     super.key,
     required this.fontSizeRating,
     required this.fontSizeReviews,
-    required this.starRatingSize,
+    required this.starRatingSize, required this.rating, required this.reviwCount,
   });
   final double fontSizeRating;
   final double fontSizeReviews;
   final double starRatingSize;
+  final String rating;
+  final String reviwCount;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class ProductRating extends StatelessWidget {
           Icon(Icons.star, size: starRatingSize, color: ColorManager.secColor),
           SizedBox(width: 3.w),
           Text(
-            '3.0', //product.rating.toStringAsFixed(1),
+            rating,
             style: getLightStyle(
               color: ColorManager.backgroundDark,
               fontSize: fontSizeRating,
@@ -34,7 +36,7 @@ class ProductRating extends StatelessWidget {
           ),
           SizedBox(width: 3.w),
           Text(
-            '(1)', //"(${product.reviewsCount})",
+            "($reviwCount)",
             style: getLightStyle(
               color: ColorManager.greyColor,
               fontSize: fontSizeReviews,

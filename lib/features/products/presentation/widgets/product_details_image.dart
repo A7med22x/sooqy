@@ -5,9 +5,9 @@ import 'package:sooqy/core/resources/color_manager.dart';
 import 'package:sooqy/core/widgets/icon_back.dart';
 
 class ProductDetailsImage extends StatelessWidget {
-  const ProductDetailsImage({
-    super.key,
-  });
+  const ProductDetailsImage({super.key, required this.imageUrl});
+
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -15,26 +15,19 @@ class ProductDetailsImage extends StatelessWidget {
       height: MediaQuery.sizeOf(context).height * 0.5,
       child: Stack(
         children: [
-          Positioned.directional(
-                    textDirection: Directionality.of(context),
-                    start: 10,
-                    top: 20,
-                    child: const IconsBack(),
-                  ),
           ClipRRect(
-            borderRadius:  BorderRadius.only(
+            borderRadius: BorderRadius.only(
               bottomLeft: Radius.elliptical(180.r, 40.r),
               bottomRight: Radius.elliptical(180.r, 40.r),
             ),
             child: CachedNetworkImage(
-              imageUrl:
-                  'https://t3.ftcdn.net/jpg/01/70/71/34/360_F_170713428_KgRrmdjyiRauJGAXJwVSqKlDXEO2YU8i.jpg',
-                      fit: BoxFit.cover,
-                      height: .infinity,
-                      width: .infinity,
+              imageUrl: imageUrl,
+              fit: BoxFit.cover,
+              height: .infinity,
+              width: .infinity,
               errorListener: (value) {
                 return;
-              },    
+              },
               placeholder: (context, url) => const Center(
                 child: CircularProgressIndicator(
                   color: ColorManager.primaryColor,
@@ -44,12 +37,21 @@ class ProductDetailsImage extends StatelessWidget {
                 return Image.network(
                   'https://t3.ftcdn.net/jpg/01/70/71/34/360_F_170713428_KgRrmdjyiRauJGAXJwVSqKlDXEO2YU8i.jpg',
                   fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) =>  Center(
-                    child: Icon(Icons.image_not_supported_outlined, size: 50.sp),
+                  errorBuilder: (context, error, stackTrace) => Center(
+                    child: Icon(
+                      Icons.image_not_supported_outlined,
+                      size: 50.sp,
+                    ),
                   ),
                 );
               },
             ),
+          ),
+          Positioned.directional(
+            textDirection: Directionality.of(context),
+            start: 10,
+            top: 20,
+            child: const IconsBack(),
           ),
         ],
       ),

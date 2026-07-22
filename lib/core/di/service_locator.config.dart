@@ -46,10 +46,22 @@ import 'package:sooqy/features/categories/data/repositories/category_repository_
     as _i810;
 import 'package:sooqy/features/categories/domain/repositories/category_repository.dart'
     as _i775;
-import 'package:sooqy/features/categories/domain/use_cases/get_categories_use_case.dart'
-    as _i651;
+import 'package:sooqy/features/categories/domain/use_cases/get_categories.dart'
+    as _i526;
 import 'package:sooqy/features/categories/presentation/cubit/category_cubit.dart'
     as _i421;
+import 'package:sooqy/features/products/data/data_sources/products_remote_data_source.dart'
+    as _i903;
+import 'package:sooqy/features/products/data/data_sources/products_remote_data_source_impl.dart'
+    as _i441;
+import 'package:sooqy/features/products/data/repositories/product_repository_impl.dart'
+    as _i189;
+import 'package:sooqy/features/products/domain/repositories/product_repository.dart'
+    as _i205;
+import 'package:sooqy/features/products/domain/use_cases/get_products.dart'
+    as _i434;
+import 'package:sooqy/features/products/presentation/cubit/product_cubit.dart'
+    as _i753;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -70,6 +82,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i490.AuthRemoteDataSource>(
       () => _i186.AuthApiRemoteDataSource(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i903.ProductsRemoteDataSource>(
+      () => _i441.ProductsRemoteDataSourceImpl(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i205.ProductRepository>(
+      () => _i189.ProductRepositoryImpl(gh<_i903.ProductsRemoteDataSource>()),
+    );
     gh.lazySingleton<_i775.CategoryRepository>(
       () =>
           _i810.CategoryRepositoryImpl(gh<_i883.CategoriesRemoteDataSource>()),
@@ -77,8 +95,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i196.AuthLocalDataSource>(
       () => _i38.AuthSharedPrefLocalDataSource(gh<_i460.SharedPreferences>()),
     );
-    gh.lazySingleton<_i651.GetCategoriesUseCase>(
-      () => _i651.GetCategoriesUseCase(gh<_i775.CategoryRepository>()),
+    gh.lazySingleton<_i526.GetCategories>(
+      () => _i526.GetCategories(gh<_i775.CategoryRepository>()),
     );
     gh.singleton<_i534.AuthRepository>(
       () => _i569.AuthRepositoryImpl(
@@ -86,8 +104,14 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i196.AuthLocalDataSource>(),
       ),
     );
+    gh.lazySingleton<_i434.GetProducts>(
+      () => _i434.GetProducts(gh<_i205.ProductRepository>()),
+    );
+    gh.lazySingleton<_i753.ProductCubit>(
+      () => _i753.ProductCubit(gh<_i434.GetProducts>()),
+    );
     gh.lazySingleton<_i421.CategoryCubit>(
-      () => _i421.CategoryCubit(gh<_i651.GetCategoriesUseCase>()),
+      () => _i421.CategoryCubit(gh<_i526.GetCategories>()),
     );
     gh.singleton<_i478.ForgotPassword>(
       () => _i478.ForgotPassword(gh<_i534.AuthRepository>()),

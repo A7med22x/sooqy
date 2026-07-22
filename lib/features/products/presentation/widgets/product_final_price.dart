@@ -1,19 +1,23 @@
-
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/widgets.dart';
 import 'package:sooqy/core/resources/styles_manager.dart';
+
 class ProductFinalPrice extends StatelessWidget {
   const ProductFinalPrice({
     super.key,
     required this.fontSize,
-    required this.color
+    required this.color,
+    required this.priceAfterDiscount,
   });
-final double fontSize;
-final Color color;
+  final double fontSize;
+  final Color color;
+  final String priceAfterDiscount;
   @override
   Widget build(BuildContext context) {
-    return Text(
-      '5000.0 EGP',
-      style: getBoldStyle(color: color,  fontSize: fontSize),
+    return AutoSizeText(
+      priceAfterDiscount,
+      style: getBoldStyle(color: color, fontSize: fontSize),
+      maxLines: 1,
     );
   }
 }

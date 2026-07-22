@@ -21,7 +21,7 @@ TextStyle getMediumStyle({double? fontSize, required Color color}) =>
     _getTextStyle(fontSize ?? FontSize.s12, FontWeightManager.medium, color);
 
 TextStyle getSemiBoldStyle({double? fontSize, required Color color}) =>
-    _getTextStyle(fontSize ?? FontSize.s15, FontWeightManager.semiBold, color);
+    _getTextStyle(fontSize ?? FontSize.s16, FontWeightManager.semiBold, color);
 
 TextStyle getBoldStyle({double? fontSize, required Color color}) =>
     _getTextStyle(fontSize ?? FontSize.s24, FontWeightManager.bold, color);

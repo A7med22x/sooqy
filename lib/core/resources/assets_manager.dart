@@ -4,6 +4,8 @@ class ImageAssets {
   static const String launcherIcon = '$_imagePath/launcher_icon.png';
   static const String android12splash = '$_imagePath/android12splash.png';
   static const String branding = '$_imagePath/branding.png';
+  static const String profileImage = '$_imagePath/profile_image.png';
+  static const String cart = '$_imagePath/cart.png';
 }
 
 class SvgAssets {
@@ -12,25 +14,26 @@ class SvgAssets {
       '$_svgPath/onboardingBackground1.svg';
   static const String onboardingBackground2 =
       '$_svgPath/onboardingBackground2.svg';
+  static const String featuredItemBackground =
+      '$_svgPath/featured_item_background.svg';
+  static const String done = '$_svgPath/done.svg';
+  static const String check = '$_svgPath/Check.svg';
+  static const String paypal = '$_svgPath/paypal.svg';
+  static const String plant = '$_svgPath/plant.svg';
+  static const String searchNotFound = '$_svgPath/search_not_found.svg';
 }
 
 class IconsAssets {
   static const String _iconPath = 'assets/icons';
   static const String google = '$_iconPath/google.svg';
-  static const String homeBold =
-      '$_iconPath/home_bold.svg';
+  static const String homeBold = '$_iconPath/home_bold.svg';
   static const String home = '$_iconPath/home.svg';
-  static const String productsBold =
-      '$_iconPath/products_bold.svg';
-  static const String products =
-      '$_iconPath/products.svg';
-  static const String shoppingCartBold =
-      '$_iconPath/shopping-cart_bold.svg';
-  static const String shoppingCart =
-      '$_iconPath/shopping-cart.svg';
+  static const String productsBold = '$_iconPath/products_bold.svg';
+  static const String products = '$_iconPath/products.svg';
+  static const String shoppingCartBold = '$_iconPath/shopping-cart_bold.svg';
+  static const String shoppingCart = '$_iconPath/shopping-cart.svg';
   static const String userBold = '$_iconPath/user_bold.svg';
-  static const String user =
-      '$_iconPath/user.svg';
+  static const String user = '$_iconPath/user.svg';
   static const String search = '$_iconPath/search_icon.svg';
   static const String filter = '$_iconPath/filter.svg';
   static const String trash = '$_iconPath/trash.svg';

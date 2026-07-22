@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sooqy/features/products/domain/entities/product.dart';
 import 'package:sooqy/features/products/presentation/screens/product_datails_screen.dart';
-import 'package:sooqy/core/review_screen.dart';
+import 'package:sooqy/features/reviews/presentation/screens/review_screen.dart';
 import 'package:sooqy/core/routes/routes.dart';
 import 'package:sooqy/core/search_screen.dart';
 import 'package:sooqy/features/auth/presentation/screens/forget_password_screen.dart';

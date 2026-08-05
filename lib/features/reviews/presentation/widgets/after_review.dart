@@ -4,40 +4,34 @@ import 'package:sooqy/core/resources/assets_manager.dart';
 import 'package:sooqy/core/resources/color_manager.dart';
 import 'package:sooqy/core/resources/styles_manager.dart';
 
-class AfterReview extends StatefulWidget {
+class AfterReview extends StatelessWidget {
   const AfterReview({super.key});
 
   @override
-  State<AfterReview> createState() => _AfterReviewState();
-}
-
-class _AfterReviewState extends State<AfterReview> {
-  bool _showData = false;
-
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(const Duration(seconds: 2), () {
-      setState(() {
-        _showData = true;
-      });
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return _showData
-        ? Column(
-            spacing: 24,
-            children: [
-              SvgPicture.asset(SvgAssets.done, height: 150),
-              Text(
-                "Thanks for rating",
-                textAlign: TextAlign.center,
-                style: getSemiBoldStyle(color: ColorManager.greyColor, fontSize: 14)
-              ),
-            ],
-          )
-        : const SizedBox();
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0, end: 1),
+      duration: const Duration(milliseconds: 400),
+      builder: (context, value, child) {
+        return Opacity(
+          opacity: value,
+          child: Transform.scale(scale: 0.9 + (0.1 * value), child: child),
+        );
+      },
+      child: Column(
+        spacing: 24,
+        children: [
+          SvgPicture.asset(SvgAssets.done, height: 150),
+          Text(
+            "Thanks for rating",
+            textAlign: TextAlign.center,
+            style: getSemiBoldStyle(
+              color: ColorManager.greyColor,
+              fontSize: 14,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

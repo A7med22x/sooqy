@@ -36,7 +36,7 @@ class SooqyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           onGenerateRoute: RouteGenerator.getRoute,
           initialRoute: AppPreferences.onboardingViewed
-              ? Routes.home
+              ? Routes.login
               : Routes.onBoarding,
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,

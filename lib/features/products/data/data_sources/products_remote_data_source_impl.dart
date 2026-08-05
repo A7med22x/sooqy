@@ -14,7 +14,10 @@ class ProductsRemoteDataSourceImpl implements ProductsRemoteDataSource {
   @override
   Future<ProductsResponse> getProducts(ProductRequest request) async {
     try {
-      final response = await _dio.get(APIConstants.productsEndpoint);
+      final response = await _dio.get(
+        APIConstants.productsEndpoint,
+        data: request.toJson(),
+      );
       return ProductsResponse.fromJson(response.data);
     } catch (exception) {
       String? message;

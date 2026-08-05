@@ -86,7 +86,9 @@ class ProductDatailsScreen extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, Routes.review);
+                          Navigator.of(
+                            context,
+                          ).pushNamed(Routes.review, arguments: product);
                         },
                         child: Text(
                           'Review',

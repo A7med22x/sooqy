@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:sooqy/core/resources/assets_manager.dart';
 import 'package:sooqy/core/resources/color_manager.dart';
@@ -34,7 +33,7 @@ class AddReviewFeild extends StatelessWidget {
               shape: BoxShape.circle,
               color: ColorManager.primaryColor,
               image: DecorationImage(
-                image: CachedNetworkImageProvider(
+                image: AssetImage(
                   ImageAssets
                       .profileImage, //SecureStorage.getUserData().image!,
                 ),

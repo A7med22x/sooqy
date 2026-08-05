@@ -62,6 +62,20 @@ import 'package:sooqy/features/products/domain/use_cases/get_products.dart'
     as _i434;
 import 'package:sooqy/features/products/presentation/cubit/product_cubit.dart'
     as _i753;
+import 'package:sooqy/features/reviews/data/data_sources/remote/review_api_remote_data_source.dart'
+    as _i578;
+import 'package:sooqy/features/reviews/data/data_sources/remote/review_remote_data_source.dart'
+    as _i532;
+import 'package:sooqy/features/reviews/data/repositories/review_repository_impl.dart'
+    as _i369;
+import 'package:sooqy/features/reviews/domin/repositories/review_repository.dart'
+    as _i492;
+import 'package:sooqy/features/reviews/domin/use_cases/add_review.dart'
+    as _i212;
+import 'package:sooqy/features/reviews/domin/use_cases/get_reviews.dart'
+    as _i315;
+import 'package:sooqy/features/reviews/presentation/cubit/review_cubit.dart'
+    as _i77;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -85,6 +99,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i903.ProductsRemoteDataSource>(
       () => _i441.ProductsRemoteDataSourceImpl(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i532.ReviewRemoteDataSource>(
+      () => _i578.ReviewApiRemoteDataSource(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i205.ProductRepository>(
       () => _i189.ProductRepositoryImpl(gh<_i903.ProductsRemoteDataSource>()),
     );
@@ -103,6 +120,15 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i490.AuthRemoteDataSource>(),
         gh<_i196.AuthLocalDataSource>(),
       ),
+    );
+    gh.lazySingleton<_i492.ReviewRepository>(
+      () => _i369.ReviewRepositoryImpl(gh<_i532.ReviewRemoteDataSource>()),
+    );
+    gh.lazySingleton<_i212.AddReview>(
+      () => _i212.AddReview(gh<_i492.ReviewRepository>()),
+    );
+    gh.lazySingleton<_i315.GetReviews>(
+      () => _i315.GetReviews(gh<_i492.ReviewRepository>()),
     );
     gh.lazySingleton<_i434.GetProducts>(
       () => _i434.GetProducts(gh<_i205.ProductRepository>()),
@@ -131,6 +157,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i174.VerifyEmail>(
       () => _i174.VerifyEmail(gh<_i534.AuthRepository>()),
+    );
+    gh.lazySingleton<_i77.ReviewCubit>(
+      () => _i77.ReviewCubit(gh<_i315.GetReviews>(), gh<_i212.AddReview>()),
     );
     gh.singleton<_i445.AuthCubit>(
       () => _i445.AuthCubit(

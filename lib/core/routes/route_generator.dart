@@ -59,7 +59,8 @@ class RouteGenerator {
         final product = settings.arguments as Product;
         return MaterialPageRoute(builder: (_) => ProductDatailsScreen(product: product,));
       case Routes.review:
-        return MaterialPageRoute(builder: (_) => const ReviewScreen());
+      final product = settings.arguments as Product;
+        return MaterialPageRoute(builder: (_) => ReviewScreen(product: product,));
       default:
         return null;
     }

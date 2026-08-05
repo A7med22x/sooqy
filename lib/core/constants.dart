@@ -10,6 +10,7 @@ class APIConstants {
   static const String resetPasswordEndpoint = 'auth/reset-password';
   static const String categoriesEndpoint = 'categories';
   static const String productsEndpoint = 'products';
+  static const String reviewsEndpoint = 'reviews';
   static const String getCartEndpoint = 'cart';
   static const String addItemToCartEndpoint = 'cart/items/';
   static const String increme1ToItemInCartEndpoint = 'cart/items';

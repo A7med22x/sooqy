@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sooqy/features/home/presentation/screens/notification_screen.dart';
 import 'package:sooqy/features/products/domain/entities/product.dart';
 import 'package:sooqy/features/products/presentation/screens/product_datails_screen.dart';
 import 'package:sooqy/features/reviews/presentation/screens/review_screen.dart';
@@ -45,6 +46,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case Routes.search:
         return MaterialPageRoute(builder: (_) => const SearchScreen());
+      case Routes.notification:
+        return MaterialPageRoute(builder: (_) => const NotificationScreen());
       case Routes.verifyEmail:
         final email = settings.arguments as String;
         return MaterialPageRoute(

@@ -37,6 +37,7 @@ class IconsAssets {
   static const String search = '$_iconPath/search_icon.svg';
   static const String filter = '$_iconPath/filter.svg';
   static const String trash = '$_iconPath/trash.svg';
+  static const String notification = '$_iconPath/notification.svg';
 }
 
 class AnimationsAssets {

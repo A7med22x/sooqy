@@ -25,7 +25,7 @@ class CategoriesTab extends StatelessWidget {
               child: SearchTextField(
                 enabled: false,
                 hint:
-                    'What are you looking for?', //hint: S.of(context).homeSearchHint,
+                    'What are you looking for?', 
               ),
             ),
             SizedBox(height: 16.h),

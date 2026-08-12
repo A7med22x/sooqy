@@ -11,4 +11,5 @@ class Routes {
   static const categoryProducts = 'categoryProducts';
   static const productDetails = 'productDetails';
   static const review = 'review';
+  static const notification = 'notification';
 }

@@ -3,7 +3,11 @@ import 'package:flutter/widgets.dart';
 import 'package:sooqy/core/resources/color_manager.dart';
 
 class ProductPriceBeforeDiscount extends StatelessWidget {
-  const ProductPriceBeforeDiscount({super.key, required this.fontSize, required this.priceBeforeDiscount});
+  const ProductPriceBeforeDiscount({
+    super.key,
+    required this.fontSize,
+    required this.priceBeforeDiscount,
+  });
   final double fontSize;
   final String priceBeforeDiscount;
 

@@ -85,7 +85,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     onTap: () {
                       if (_formKey.currentState!.validate()) {
                         context.read<AuthCubit>().forgotPassword(
-                          ForgetPasswordRequest(email: _emailController.text)
+                          ForgetPasswordRequest(email: _emailController.text),
                         );
                       }
                     },

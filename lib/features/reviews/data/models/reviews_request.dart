@@ -3,17 +3,9 @@ class ReviewsRequest {
   final int page;
   final int pageSize;
 
-  ReviewsRequest({
-    required this.productId,
-    this.page = 1,
-    this.pageSize = 20,
-  });
+  ReviewsRequest({required this.productId, this.page = 1, this.pageSize = 20});
 
   Map<String, dynamic> toJson() {
-    return {
-      "productId": productId,
-      "page": page,
-      "pageSize": pageSize,
-    };
+    return {"productId": productId, "page": page, "pageSize": pageSize};
   }
 }

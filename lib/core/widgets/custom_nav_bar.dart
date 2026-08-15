@@ -23,7 +23,8 @@ class _CustomButtomNavBarState extends State<CustomButtomNavBar> {
           topLeft: Radius.circular(30),
           topRight: Radius.circular(30),
         ),
-        color: ColorManager.white,//Theme.of(context).navigationBarTheme.backgroundColor
+        color: ColorManager
+            .white, //Theme.of(context).navigationBarTheme.backgroundColor
         boxShadow: const [
           BoxShadow(
             color: Color.fromARGB(29, 0, 0, 0),
@@ -36,10 +37,9 @@ class _CustomButtomNavBarState extends State<CustomButtomNavBar> {
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         unselectedItemColor: ColorManager.grey,
         selectedItemColor: ColorManager.primaryColor,
-        itemPadding:
-            Localizations.localeOf(context).languageCode == 'ar'
-                ? const EdgeInsets.only(top: 0, left: 15)
-                : const EdgeInsets.only(top: 0, right: 15),
+        itemPadding: Localizations.localeOf(context).languageCode == 'ar'
+            ? const EdgeInsets.only(top: 0, left: 15)
+            : const EdgeInsets.only(top: 0, right: 15),
 
         currentIndex: _currentIndex,
         onTap: (i) {
@@ -49,22 +49,22 @@ class _CustomButtomNavBarState extends State<CustomButtomNavBar> {
         },
         items: [
           navBarItem(
-            title: 'Home',//S.of(context).home
+            title: 'Home', //S.of(context).home
             inActiveIcon: IconsAssets.home,
             activeIcon: IconsAssets.homeBold,
           ),
           navBarItem(
-            title: 'Categories',//S.of(context).categories
+            title: 'Categories', //S.of(context).categories
             inActiveIcon: IconsAssets.products,
             activeIcon: IconsAssets.productsBold,
           ),
           navBarItem(
-            title: 'Cart',//S.of(context).cart
+            title: 'Cart', //S.of(context).cart
             inActiveIcon: IconsAssets.shoppingCart,
             activeIcon: IconsAssets.shoppingCartBold,
           ),
           navBarItem(
-            title: 'Profile',//S.of(context).profile,
+            title: 'Profile', //S.of(context).profile,
             inActiveIcon: IconsAssets.user,
             activeIcon: IconsAssets.userBold,
           ),
@@ -84,9 +84,7 @@ class _CustomButtomNavBarState extends State<CustomButtomNavBar> {
         width: MediaQuery.of(context).size.width * .1,
         child: Stack(
           clipBehavior: Clip.none,
-          children: [
-            Center(child: SvgPicture.asset(inActiveIcon, height: 22)),
-          ],
+          children: [Center(child: SvgPicture.asset(inActiveIcon, height: 22))],
         ),
       ),
       activeIcon: CircleAvatar(
@@ -94,7 +92,10 @@ class _CustomButtomNavBarState extends State<CustomButtomNavBar> {
         radius: 20,
         child: SvgPicture.asset(activeIcon, height: 22),
       ),
-      title: Text("   $title",style: getSemiBoldStyle(color: ColorManager.primaryColor)),
+      title: Text(
+        "   $title",
+        style: getSemiBoldStyle(color: ColorManager.primaryColor),
+      ),
     );
   }
 }

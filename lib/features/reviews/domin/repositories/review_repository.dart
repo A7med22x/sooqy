@@ -5,7 +5,11 @@ import 'package:sooqy/features/reviews/data/models/reviews_request.dart';
 import 'package:sooqy/features/reviews/domin/entities/review.dart';
 
 abstract class ReviewRepository {
-  Future<Either<Failure, List<Review>>> getProductReviewsById(ReviewsRequest request);
+  Future<Either<Failure, List<Review>>> getProductReviewsById(
+    ReviewsRequest request,
+  );
 
-  Future<Either<Failure, void>> addReviewForProduct(CreateReviewRequest request);
+  Future<Either<Failure, void>> addReviewForProduct(
+    CreateReviewRequest request,
+  );
 }

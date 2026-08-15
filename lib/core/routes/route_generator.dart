@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sooqy/features/home/presentation/screens/notification_screen.dart';
+import 'package:sooqy/features/home/presentation/screens/view_more_screen.dart';
 import 'package:sooqy/features/products/domain/entities/product.dart';
 import 'package:sooqy/features/products/presentation/screens/product_datails_screen.dart';
 import 'package:sooqy/features/reviews/presentation/screens/review_screen.dart';
@@ -48,22 +49,33 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const SearchScreen());
       case Routes.notification:
         return MaterialPageRoute(builder: (_) => const NotificationScreen());
+      case Routes.viewMore:
+        final args = settings.arguments as Map<String, dynamic>;
+        final title = args['title'] as String;
+        final products = args['products'] as List<Product>;
+        return MaterialPageRoute(
+          builder: (_) => ViewMoreScreen(title: title, products: products),
+        );
       case Routes.verifyEmail:
         final email = settings.arguments as String;
         return MaterialPageRoute(
           builder: (context) => VerifyEmailScreen(email: email),
         );
       case Routes.categoryProducts:
-      final categoryName = settings.arguments as String;
+        final categoryName = settings.arguments as String;
         return MaterialPageRoute(
-          builder: (_) => CategoryProductsScreen(categoryName: categoryName,),
+          builder: (_) => CategoryProductsScreen(categoryName: categoryName),
         );
       case Routes.productDetails:
         final product = settings.arguments as Product;
-        return MaterialPageRoute(builder: (_) => ProductDatailsScreen(product: product,));
+        return MaterialPageRoute(
+          builder: (_) => ProductDatailsScreen(product: product),
+        );
       case Routes.review:
-      final product = settings.arguments as Product;
-        return MaterialPageRoute(builder: (_) => ReviewScreen(product: product,));
+        final product = settings.arguments as Product;
+        return MaterialPageRoute(
+          builder: (_) => ReviewScreen(product: product),
+        );
       default:
         return null;
     }

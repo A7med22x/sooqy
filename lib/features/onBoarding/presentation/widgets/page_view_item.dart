@@ -78,7 +78,10 @@ class PageViewItem extends StatelessWidget {
                   const SizedBox(width: 8),
                   Text(
                     'Sooqy',
-                    style: getBoldStyle(color: ColorManager.green, fontSize: FontSize.s36),
+                    style: getBoldStyle(
+                      color: ColorManager.green,
+                      fontSize: FontSize.s36,
+                    ),
                   ),
                 ],
               )

@@ -40,14 +40,14 @@ class AddReviewFeild extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 10,),
+          const SizedBox(width: 10),
           Text(
             "Add Review",
-            style: getSemiBoldStyle(color: ColorManager.black, fontSize: 16)
+            style: getSemiBoldStyle(color: ColorManager.black, fontSize: 16),
           ),
           const Spacer(),
           const Icon(Icons.add_rounded, color: ColorManager.primaryColor),
-          const SizedBox(width: 16,),
+          const SizedBox(width: 16),
         ],
       ),
     );

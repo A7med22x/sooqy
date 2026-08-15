@@ -52,10 +52,7 @@ class AuthApiRemoteDataSource implements AuthRemoteDataSource {
   @override
   Future<void> verifyEmail(VerifyEmailRequest request) async {
     try {
-      await _dio.post(
-        APIConstants.verifyEmailEndpoint,
-        data: request.toJson(),
-      );
+      await _dio.post(APIConstants.verifyEmailEndpoint, data: request.toJson());
     } catch (exception) {
       String? message;
       if (exception is DioException) {
@@ -84,10 +81,7 @@ class AuthApiRemoteDataSource implements AuthRemoteDataSource {
   @override
   Future<void> resendOtp(ResendOtpRequest request) async {
     try {
-      await _dio.post(
-        APIConstants.resendOtpEndpoint,
-        data: request.toJson(),
-      );
+      await _dio.post(APIConstants.resendOtpEndpoint, data: request.toJson());
     } catch (exception) {
       String? message;
       if (exception is DioException) {
@@ -100,10 +94,7 @@ class AuthApiRemoteDataSource implements AuthRemoteDataSource {
   @override
   Future<void> validateOtp(ValidateOtpRequest request) async {
     try {
-      await _dio.post(
-        APIConstants.validateOtpEndpoint,
-        data: request.toJson(),
-      );
+      await _dio.post(APIConstants.validateOtpEndpoint, data: request.toJson());
     } catch (exception) {
       String? message;
       if (exception is DioException) {

@@ -24,27 +24,19 @@ class ServerFailure extends Failure {
           );
 
         case DioExceptionType.badCertificate:
-          return const ServerFailure(
-            message: 'Invalid security certificate.',
-          );
+          return const ServerFailure(message: 'Invalid security certificate.');
 
         case DioExceptionType.badResponse:
           if (error.response != null) {
             return ServerFailure._fromBadResponse(error.response!);
           }
-          return const ServerFailure(
-            message: 'Unexpected server response.',
-          );
+          return const ServerFailure(message: 'Unexpected server response.');
 
         case DioExceptionType.cancel:
-          return const ServerFailure(
-            message: 'Request was cancelled.',
-          );
+          return const ServerFailure(message: 'Request was cancelled.');
 
         case DioExceptionType.connectionError:
-          return const ServerFailure(
-            message: 'No internet connection.',
-          );
+          return const ServerFailure(message: 'No internet connection.');
 
         case DioExceptionType.unknown:
           return const ServerFailure(
@@ -73,7 +65,6 @@ class ServerFailure extends Failure {
       if (data['message'] is String) {
         apiMessage = data['message'];
       }
-
       // Case 2: { "errors": { "field": ["message"] } }
       else if (data['errors'] is Map) {
         final errors = data['errors'] as Map;
@@ -90,24 +81,16 @@ class ServerFailure extends Failure {
 
     switch (statusCode) {
       case 400:
-        return ServerFailure(
-          message: apiMessage ?? 'Bad request.',
-        );
+        return ServerFailure(message: apiMessage ?? 'Bad request.');
 
       case 401:
-        return const ServerFailure(
-          message: 'Unauthorized.',
-        );
+        return const ServerFailure(message: 'Unauthorized.');
 
       case 403:
-        return ServerFailure(
-          message: apiMessage ?? 'Access denied.',
-        );
+        return ServerFailure(message: apiMessage ?? 'Access denied.');
 
       case 404:
-        return const ServerFailure(
-          message: 'Resource not found.',
-        );
+        return const ServerFailure(message: 'Resource not found.');
 
       case 429:
         return const ServerFailure(

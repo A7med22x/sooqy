@@ -1,11 +1,7 @@
 class ResendOtpRequest {
   final String email;
 
-  ResendOtpRequest({
-    required this.email,
-  });
+  ResendOtpRequest({required this.email});
 
-  Map<String, dynamic> toJson() => {
-        "email": email,
-      };
+  Map<String, dynamic> toJson() => {"email": email};
 }

@@ -4,7 +4,14 @@ import 'package:sooqy/core/resources/color_manager.dart';
 import 'package:sooqy/core/resources/styles_manager.dart';
 
 class NotificationHeader extends StatelessWidget {
-  const NotificationHeader({super.key});
+  const NotificationHeader({
+    super.key,
+    required this.notificationCount,
+    required this.onSelectAllAsRead,
+  });
+
+  final int notificationCount;
+  final VoidCallback onSelectAllAsRead;
 
   @override
   Widget build(BuildContext context) {
@@ -23,17 +30,17 @@ class NotificationHeader extends StatelessWidget {
               alpha: 0.1,
             ),
             child: Text(
-              '15',
+              '$notificationCount',
               style: getBoldStyle(
                 fontSize: 13,
                 color: ColorManager.primaryColor,
               ),
             ),
           ),
-    
+
           const Spacer(),
           TextButton(
-            onPressed: () {},
+            onPressed: onSelectAllAsRead,
             child: Text(
               'Select All as Read',
               style: getRegularStyle(

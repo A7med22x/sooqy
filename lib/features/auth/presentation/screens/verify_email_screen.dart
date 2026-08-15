@@ -123,7 +123,9 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                     const SizedBox(width: 12),
                     InkWell(
                       onTap: () {
-                        context.read<AuthCubit>().resendOtp(ResendOtpRequest(email: widget.email));
+                        context.read<AuthCubit>().resendOtp(
+                          ResendOtpRequest(email: widget.email),
+                        );
                       },
                       child: Text(
                         'Resend Code',

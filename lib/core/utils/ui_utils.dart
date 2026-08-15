@@ -11,7 +11,7 @@ class UIUtils {
       child: AlertDialog(
         content: SizedBox(
           height: MediaQuery.sizeOf(context).height * 0.2,
-          child:const Column(
+          child: const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [LoadingIndicator()],
           ),

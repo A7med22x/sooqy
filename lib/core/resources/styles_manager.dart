@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sooqy/core/resources/color_manager.dart';
 import 'package:sooqy/core/resources/font_manager.dart';
 
-
 TextStyle _getTextStyle(double fontSize, FontWeight fontWeight, Color color) =>
     TextStyle(
       fontSize: fontSize,

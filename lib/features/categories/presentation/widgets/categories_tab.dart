@@ -24,8 +24,7 @@ class CategoriesTab extends StatelessWidget {
               onTap: () => Navigator.pushNamed(context, Routes.search),
               child: SearchTextField(
                 enabled: false,
-                hint:
-                    'What are you looking for?', 
+                hint: 'What are you looking for?',
               ),
             ),
             SizedBox(height: 16.h),

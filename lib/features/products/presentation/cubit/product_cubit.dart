@@ -4,7 +4,7 @@ import 'package:sooqy/features/products/data/models/product_request.dart';
 import 'package:sooqy/features/products/domain/use_cases/get_products.dart';
 import 'package:sooqy/features/products/presentation/cubit/product_states.dart';
 
-@lazySingleton
+@injectable
 class ProductCubit extends Cubit<ProductState> {
   final GetProducts _getProducts;
   ProductCubit(this._getProducts) : super(ProductInitial());

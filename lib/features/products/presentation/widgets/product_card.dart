@@ -63,33 +63,33 @@ class ProductCard extends StatelessWidget {
             ),
             SizedBox(height: 8.h),
             if (product.reviewsCount > 0)
-            ProductTitleRatingRow(
-              name: product.name,
-              rating: product.rating.toStringAsFixed(1),
-              reviwCount: product.reviewsCount.toString(),
-            ),
+              ProductTitleRatingRow(
+                name: product.name,
+                rating: product.rating.toStringAsFixed(1),
+                reviwCount: product.reviewsCount.toString(),
+              ),
             SizedBox(height: 5.h),
             if (product.discountPercentage > 0)
-            Row(
-              mainAxisAlignment: .start,
-              children: [
-                Expanded(
-                  child: ProductPriceBeforeDiscount(
-                    fontSize: 14.sp,
-                    priceBeforeDiscount: product.price.toStringAsFixed(1),
+              Row(
+                mainAxisAlignment: .start,
+                children: [
+                  Expanded(
+                    child: ProductPriceBeforeDiscount(
+                      fontSize: 14.sp,
+                      priceBeforeDiscount: product.price.toStringAsFixed(1),
+                    ),
                   ),
-                ),
-                SizedBox(width: 4.w),
-                AutoSizeText(
-                  '${product.discountPercentage}% Discount',
-                  style: getSemiBoldStyle(
-                    color: ColorManager.lightPrimaryColor,
-                    fontSize: 12.sp,
+                  SizedBox(width: 4.w),
+                  AutoSizeText(
+                    '${product.discountPercentage}% Discount',
+                    style: getSemiBoldStyle(
+                      color: ColorManager.lightPrimaryColor,
+                      fontSize: 12.sp,
+                    ),
+                    maxLines: 1,
                   ),
-                  maxLines: 1,
-                ),
-              ],
-            ),
+                ],
+              ),
             SizedBox(height: 3.h),
             Row(
               mainAxisAlignment: .start,
@@ -97,9 +97,8 @@ class ProductCard extends StatelessWidget {
                 ProductFinalPrice(
                   fontSize: 15.sp,
                   color: ColorManager.black,
-                  priceAfterDiscount:
-                      (product.price - priceDiscount)
-                          .toStringAsFixed(1),
+                  priceAfterDiscount: (product.price - priceDiscount)
+                      .toStringAsFixed(1),
                 ),
               ],
             ),

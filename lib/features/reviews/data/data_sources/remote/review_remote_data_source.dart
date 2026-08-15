@@ -4,6 +4,6 @@ import 'package:sooqy/features/reviews/data/models/reviews_response.dart';
 
 abstract class ReviewRemoteDataSource {
   Future<ReviewsResponse> getProductReviewsById(ReviewsRequest request);
-  
+
   Future<void> addReviewForProduct(CreateReviewRequest request);
 }

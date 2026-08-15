@@ -18,10 +18,7 @@ class OptFiled extends StatelessWidget {
         keyboardType: TextInputType.number,
         maxLength: 1,
         controller: controller,
-        style: getBoldStyle(
-          color: ColorManager.black,
-          fontSize: 16,
-        ),
+        style: getBoldStyle(color: ColorManager.black, fontSize: 16),
         decoration: InputDecoration(
           counterText: '',
           filled: true,
@@ -32,7 +29,10 @@ class OptFiled extends StatelessWidget {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: ColorManager.secColor, width: 2),
+            borderSide: const BorderSide(
+              color: ColorManager.secColor,
+              width: 2,
+            ),
           ),
         ),
         onChanged: (value) {

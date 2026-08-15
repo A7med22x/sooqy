@@ -14,7 +14,7 @@ abstract class RegisterModule {
         receiveDataWhenStatusError: true,
       ),
     );
-    
+
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {

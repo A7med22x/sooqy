@@ -12,4 +12,5 @@ class Routes {
   static const productDetails = 'productDetails';
   static const review = 'review';
   static const notification = 'notification';
+  static const viewMore = 'viewMore';
 }

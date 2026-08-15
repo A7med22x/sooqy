@@ -8,7 +8,9 @@ class ProductRating extends StatelessWidget {
     super.key,
     required this.fontSizeRating,
     required this.fontSizeReviews,
-    required this.starRatingSize, required this.rating, required this.reviwCount,
+    required this.starRatingSize,
+    required this.rating,
+    required this.reviwCount,
   });
   final double fontSizeRating;
   final double fontSizeReviews;

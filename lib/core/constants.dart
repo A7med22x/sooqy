@@ -12,6 +12,8 @@ class APIConstants {
   static const String productsEndpoint = 'products';
   static const String reviewsEndpoint = 'reviews';
   static const String getCartEndpoint = 'cart';
+  static const String offersEndpoint = 'offers';
+  static const String notificationsEndpoint = 'notifications';
   static const String addItemToCartEndpoint = 'cart/items/';
   static const String increme1ToItemInCartEndpoint = 'cart/items';
   static const String decreme1FromItemInCartEndpoint = 'cart/items/decrement';

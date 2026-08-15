@@ -8,6 +8,5 @@ import 'package:sooqy/features/categories/domain/repositories/category_repositor
 class GetCategories {
   final CategoryRepository _repository;
   GetCategories(this._repository);
-  Future<Either<Failure, List<Category>>> call() =>
-      _repository.getCategories();
+  Future<Either<Failure, List<Category>>> call() => _repository.getCategories();
 }

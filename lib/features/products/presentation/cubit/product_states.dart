@@ -5,6 +5,7 @@ abstract class ProductState {}
 class ProductInitial extends ProductState {}
 
 class GetProductsLoading extends ProductState {}
+
 class GetProductsSuccess extends ProductState {
   final List<Product> products;
   GetProductsSuccess(this.products);

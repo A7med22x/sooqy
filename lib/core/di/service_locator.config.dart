@@ -50,6 +50,23 @@ import 'package:sooqy/features/categories/domain/use_cases/get_categories.dart'
     as _i526;
 import 'package:sooqy/features/categories/presentation/cubit/category_cubit.dart'
     as _i421;
+import 'package:sooqy/features/home/data/data_sources/home_api_remote_data_source.dart'
+    as _i114;
+import 'package:sooqy/features/home/data/data_sources/home_remote_data_source.dart'
+    as _i728;
+import 'package:sooqy/features/home/data/repositories/home_repository_impl.dart'
+    as _i968;
+import 'package:sooqy/features/home/domain/repositories/home_repository.dart'
+    as _i942;
+import 'package:sooqy/features/home/domain/use_cases/get_notifications.dart'
+    as _i268;
+import 'package:sooqy/features/home/domain/use_cases/get_offers.dart' as _i1041;
+import 'package:sooqy/features/home/domain/use_cases/read_all_notification.dart'
+    as _i611;
+import 'package:sooqy/features/home/domain/use_cases/read_notification.dart'
+    as _i368;
+import 'package:sooqy/features/home/presentation/cubit/home_cubit.dart'
+    as _i148;
 import 'package:sooqy/features/products/data/data_sources/products_remote_data_source.dart'
     as _i903;
 import 'package:sooqy/features/products/data/data_sources/products_remote_data_source_impl.dart'
@@ -102,8 +119,26 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i532.ReviewRemoteDataSource>(
       () => _i578.ReviewApiRemoteDataSource(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i728.HomeRemoteDataSource>(
+      () => _i114.HomeApiRemoteDataSource(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i942.HomeRepository>(
+      () => _i968.HomeRepositoryImpl(gh<_i728.HomeRemoteDataSource>()),
+    );
     gh.lazySingleton<_i205.ProductRepository>(
       () => _i189.ProductRepositoryImpl(gh<_i903.ProductsRemoteDataSource>()),
+    );
+    gh.lazySingleton<_i268.GetNotifications>(
+      () => _i268.GetNotifications(gh<_i942.HomeRepository>()),
+    );
+    gh.lazySingleton<_i1041.GetOffers>(
+      () => _i1041.GetOffers(gh<_i942.HomeRepository>()),
+    );
+    gh.lazySingleton<_i611.ReadAllNotification>(
+      () => _i611.ReadAllNotification(gh<_i942.HomeRepository>()),
+    );
+    gh.lazySingleton<_i368.ReadNotification>(
+      () => _i368.ReadNotification(gh<_i942.HomeRepository>()),
     );
     gh.lazySingleton<_i775.CategoryRepository>(
       () =>
@@ -133,7 +168,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i434.GetProducts>(
       () => _i434.GetProducts(gh<_i205.ProductRepository>()),
     );
-    gh.lazySingleton<_i753.ProductCubit>(
+    gh.factory<_i148.HomeCubit>(
+      () => _i148.HomeCubit(
+        gh<_i1041.GetOffers>(),
+        gh<_i268.GetNotifications>(),
+        gh<_i368.ReadNotification>(),
+        gh<_i611.ReadAllNotification>(),
+      ),
+    );
+    gh.factory<_i753.ProductCubit>(
       () => _i753.ProductCubit(gh<_i434.GetProducts>()),
     );
     gh.lazySingleton<_i421.CategoryCubit>(

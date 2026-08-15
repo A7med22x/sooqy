@@ -17,7 +17,7 @@ class ReviewsListView extends StatefulWidget {
 
 class _ReviewsListViewState extends State<ReviewsListView> {
   late final ScrollController scrollController;
-  
+
   @override
   void initState() {
     super.initState();

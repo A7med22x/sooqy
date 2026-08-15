@@ -20,7 +20,7 @@ class CategoriesListView extends StatelessWidget {
           if (state is GetCategoriesLoading) {
             return LoadingIndicator();
           } else if (state is GetCategoriesError) {
-             return ErrorIndicator(state.message);
+            return ErrorIndicator(state.message);
           } else if (state is GetCategoriesSuccess) {
             return GridView.builder(
               itemCount: state.categories.length,

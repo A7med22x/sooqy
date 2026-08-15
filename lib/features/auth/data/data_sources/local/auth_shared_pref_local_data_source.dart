@@ -26,7 +26,7 @@ class AuthSharedPrefLocalDataSource implements AuthLocalDataSource {
       throw const LocalException('Failed to get access token');
     }
   }
-  
+
   @override
   Future<void> saveRefreshToken(String refreshToken) async {
     try {

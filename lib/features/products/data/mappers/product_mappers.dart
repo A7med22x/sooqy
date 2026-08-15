@@ -1,7 +1,7 @@
 import 'package:sooqy/features/products/domain/entities/product.dart';
 import 'package:sooqy/features/products/data/models/product_model.dart';
 
-extension ProductMappers on ProductModel{
+extension ProductMappers on ProductModel {
   Product get toEntity => Product(
     id: id,
     productCode: productCode,

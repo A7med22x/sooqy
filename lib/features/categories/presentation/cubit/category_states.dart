@@ -5,6 +5,7 @@ abstract class CategoryState {}
 class CategoryInitial extends CategoryState {}
 
 class GetCategoriesLoading extends CategoryState {}
+
 class GetCategoriesSuccess extends CategoryState {
   final List<Category> categories;
   GetCategoriesSuccess(this.categories);

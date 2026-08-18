@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:sooqy/core/errors/exceptions.dart';
 import 'package:sooqy/core/errors/failure.dart';
 import 'package:sooqy/features/auth/data/data_sources/local/auth_local_data_source.dart';
+import 'package:sooqy/features/auth/data/mappers/user_mapper.dart';
 import 'package:sooqy/features/auth/data/data_sources/remote/auth_remote_data_source.dart';
 import 'package:sooqy/features/auth/data/models/forget_password_request.dart';
 import 'package:sooqy/features/auth/data/models/login_request.dart';
@@ -11,6 +12,7 @@ import 'package:sooqy/features/auth/data/models/resend_otp_request.dart';
 import 'package:sooqy/features/auth/data/models/reset_password_request.dart';
 import 'package:sooqy/features/auth/data/models/validate_otp_request.dart';
 import 'package:sooqy/features/auth/data/models/verify_email_request.dart';
+import 'package:sooqy/features/auth/domain/entities/user.dart';
 import 'package:sooqy/features/auth/domain/repositories/auh_repository.dart';
 
 @Singleton(as: AuthRepository)
@@ -39,6 +41,18 @@ class AuthRepositoryImpl implements AuthRepository {
       return Right(null);
     } on AppException catch (exception) {
       return left(Failure(message: exception.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, User>> getCurrentUser() async {
+    try {
+      final response = await _remoteDataSource.getCurrentUser();
+      final user = response.toEntity;
+
+      return Right(user);
+    } on AppException catch (exception) {
+      return Left(Failure(message: exception.message));
     }
   }
 

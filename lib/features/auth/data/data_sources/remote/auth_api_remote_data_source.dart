@@ -10,6 +10,7 @@ import 'package:sooqy/features/auth/data/models/login_response.dart';
 import 'package:sooqy/features/auth/data/models/register_request.dart';
 import 'package:sooqy/features/auth/data/models/resend_otp_request.dart';
 import 'package:sooqy/features/auth/data/models/reset_password_request.dart';
+import 'package:sooqy/features/auth/data/models/user_model.dart';
 import 'package:sooqy/features/auth/data/models/validate_otp_request.dart';
 import 'package:sooqy/features/auth/data/models/verify_email_request.dart';
 
@@ -46,6 +47,23 @@ class AuthApiRemoteDataSource implements AuthRemoteDataSource {
         message = ErrorHelper.getMessage(exception.response?.data);
       }
       throw RemoteException(message ?? 'Failed to login');
+    }
+  }
+
+  @override
+  Future<UserModel> getCurrentUser() async {
+    try {
+      final response = await _dio.get(APIConstants.getUserEndpoint);
+
+      return UserModel.fromJson(response.data);
+    } catch (exception) {
+      String? message;
+
+      if (exception is DioException) {
+        message = ErrorHelper.getMessage(exception.response?.data);
+      }
+
+      throw RemoteException(message ?? 'Failed to get current user');
     }
   }
 

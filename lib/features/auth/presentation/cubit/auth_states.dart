@@ -1,3 +1,5 @@
+import 'package:sooqy/features/auth/domain/entities/user.dart';
+
 abstract class AuthState {}
 
 class AuthInitial extends AuthState {}
@@ -14,7 +16,11 @@ class RegisterError extends AuthState {
 
 class LoginLoading extends AuthState {}
 
-class LoginSuccess extends AuthState {}
+class LoginSuccess extends AuthState {
+  final User user;
+
+  LoginSuccess(this.user);
+}
 
 class LoginError extends AuthState {
   final String message;
@@ -71,3 +77,11 @@ class ResetPasswordError extends AuthState {
 
   ResetPasswordError(this.message);
 }
+
+class AuthAuthenticated extends AuthState {
+  final User user;
+
+  AuthAuthenticated(this.user);
+}
+
+class AuthUnauthenticated extends AuthState {}

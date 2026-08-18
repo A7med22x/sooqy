@@ -3,11 +3,13 @@ class APIConstants {
   static const String tokenHeaderKey = 'token';
   static const String registerEndpoint = 'auth/register';
   static const String loginEndpoint = 'auth/login';
+  static const String refreshTokenEndpoint = 'auth/refresh-token';
   static const String verifyEmailEndpoint = 'auth/verify-email';
   static const String resendOtpEndpoint = 'auth/resend-otp';
   static const String forgotPasswordEndpoint = 'auth/forgot-password';
   static const String validateOtpEndpoint = 'auth/validate-otp';
   static const String resetPasswordEndpoint = 'auth/reset-password';
+  static const String getUserEndpoint = 'auth/me';
   static const String categoriesEndpoint = 'categories';
   static const String productsEndpoint = 'products';
   static const String reviewsEndpoint = 'reviews';

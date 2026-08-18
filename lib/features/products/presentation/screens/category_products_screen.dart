@@ -33,7 +33,7 @@ class _CategoryProductsScreenState extends State<CategoryProductsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TitleTextOfAppBar(text: 'Search'),
+        title: TitleTextOfAppBar(text: 'Products'),
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
           icon: const Icon(

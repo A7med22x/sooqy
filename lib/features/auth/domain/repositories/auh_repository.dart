@@ -7,11 +7,14 @@ import 'package:sooqy/features/auth/data/models/resend_otp_request.dart';
 import 'package:sooqy/features/auth/data/models/reset_password_request.dart';
 import 'package:sooqy/features/auth/data/models/validate_otp_request.dart';
 import 'package:sooqy/features/auth/data/models/verify_email_request.dart';
+import 'package:sooqy/features/auth/domain/entities/user.dart';
 
 abstract class AuthRepository {
   Future<Either<Failure, void>> register(RegisterRequest request);
 
   Future<Either<Failure, void>> login(LoginRequest request);
+
+  Future<Either<Failure, User>> getCurrentUser();
 
   Future<Either<Failure, void>> verifyEmail(VerifyEmailRequest request);
 

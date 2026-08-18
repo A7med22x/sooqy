@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sooqy/core/resources/assets_manager.dart';
 import 'package:sooqy/core/resources/color_manager.dart';
 import 'package:sooqy/core/resources/styles_manager.dart';
 import 'package:sooqy/core/routes/routes.dart';
+import 'package:sooqy/features/auth/presentation/cubit/auth_cubit.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<AuthCubit>().user;
+
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(horizontal: 16),
       title: Text(
@@ -17,7 +21,7 @@ class HomeAppBar extends StatelessWidget {
         style: getRegularStyle(color: ColorManager.greyColor, fontSize: 16),
       ),
       subtitle: Text(
-        'John Doe',
+        user?.fullName ?? '',
         style: getBoldStyle(color: ColorManager.black, fontSize: 16),
       ),
       trailing: InkWell(
@@ -39,12 +43,19 @@ class HomeAppBar extends StatelessWidget {
         ),
       ),
       leading: CircleAvatar(
-        child: Image.asset(
-          ImageAssets.profileImage,
-          width: 44,
-          height: 44,
-          fit: BoxFit.scaleDown,
-        ),
+        radius: 22,
+        backgroundImage:
+            user?.profilePicture != null && user!.profilePicture!.isNotEmpty
+            ? NetworkImage(user.profilePicture!)
+            : null,
+        child: user?.profilePicture == null || user!.profilePicture!.isEmpty
+            ? Image.asset(
+                ImageAssets.profileImage,
+                width: 44,
+                height: 44,
+                fit: BoxFit.scaleDown,
+              )
+            : null,
       ),
     );
   }

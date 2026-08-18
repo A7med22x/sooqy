@@ -13,4 +13,6 @@ class Routes {
   static const review = 'review';
   static const notification = 'notification';
   static const viewMore = 'viewMore';
+  static const String start = '/start';
+  static const String noInternet = 'noInternet';
 }

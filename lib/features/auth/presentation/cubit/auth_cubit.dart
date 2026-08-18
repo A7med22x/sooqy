@@ -7,7 +7,9 @@ import 'package:sooqy/features/auth/data/models/resend_otp_request.dart';
 import 'package:sooqy/features/auth/data/models/reset_password_request.dart';
 import 'package:sooqy/features/auth/data/models/validate_otp_request.dart';
 import 'package:sooqy/features/auth/data/models/verify_email_request.dart';
+import 'package:sooqy/features/auth/domain/entities/user.dart';
 import 'package:sooqy/features/auth/domain/use_cases/forgot_password.dart';
+import 'package:sooqy/features/auth/domain/use_cases/get_current_user.dart';
 import 'package:sooqy/features/auth/domain/use_cases/login.dart';
 import 'package:sooqy/features/auth/domain/use_cases/register.dart';
 import 'package:sooqy/features/auth/domain/use_cases/resend_otp.dart';
@@ -18,8 +20,11 @@ import 'package:sooqy/features/auth/presentation/cubit/auth_states.dart';
 
 @singleton
 class AuthCubit extends Cubit<AuthState> {
+  User? user;
+
   final Register _register;
   final Login _login;
+  final GetCurrentUser _getCurrentUser;
   final VerifyEmail _verifyEmail;
   final ForgotPassword _forgotPassword;
   final ResendOtp _resendOtp;
@@ -34,6 +39,7 @@ class AuthCubit extends Cubit<AuthState> {
     this._resendOtp,
     this._validateOtp,
     this._resetPassword,
+    this._getCurrentUser,
   ) : super(AuthInitial());
 
   Future<void> register(RegisterRequest request) async {
@@ -47,10 +53,41 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> login(LoginRequest request) async {
     emit(LoginLoading());
+
     final result = await _login(request);
+
+    await result.fold(
+      (failure) async {
+        emit(LoginError(failure.message));
+      },
+      (_) async {
+        final userResult = await _getCurrentUser();
+
+        userResult.fold(
+          (failure) {
+            emit(LoginError(failure.message));
+          },
+          (user) {
+            this.user = user;
+            emit(LoginSuccess(user));
+          },
+        );
+      },
+    );
+  }
+
+  Future<void> getCurrentUser() async {
+    final result = await _getCurrentUser();
+
     result.fold(
-      (failure) => emit(LoginError(failure.message)),
-      (_) => emit(LoginSuccess()),
+      (failure) {
+        user = null;
+        emit(AuthUnauthenticated());
+      },
+      (currentUser) {
+        user = currentUser;
+        emit(AuthAuthenticated(currentUser));
+      },
     );
   }
 

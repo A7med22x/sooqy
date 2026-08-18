@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sooqy/features/home/presentation/screens/notification_screen.dart';
 import 'package:sooqy/features/home/presentation/screens/view_more_screen.dart';
+import 'package:sooqy/features/onBoarding/presentation/screens/no_internet_screen.dart';
+import 'package:sooqy/features/onBoarding/presentation/screens/start_screen.dart';
 import 'package:sooqy/features/products/domain/entities/product.dart';
 import 'package:sooqy/features/products/presentation/screens/product_datails_screen.dart';
 import 'package:sooqy/features/reviews/presentation/screens/review_screen.dart';
@@ -22,6 +24,14 @@ class RouteGenerator {
       case Routes.onBoarding:
         return MaterialPageRoute(
           builder: (context) => const OnboardingScreen(),
+        );
+        case Routes.start:
+  return MaterialPageRoute(
+    builder: (_) => const StartScreen(),
+  );
+      case Routes.noInternet:
+        return MaterialPageRoute(
+          builder: (_) => const NoInternetScreen(),
         );
       case Routes.login:
         return MaterialPageRoute(builder: (context) => const LoginScreen());
@@ -81,3 +91,4 @@ class RouteGenerator {
     }
   }
 }
+

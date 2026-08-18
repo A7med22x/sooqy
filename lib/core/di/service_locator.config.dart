@@ -10,9 +10,9 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i361;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
-import 'package:shared_preferences/shared_preferences.dart' as _i460;
 import 'package:sooqy/core/di/register_module.dart' as _i212;
 import 'package:sooqy/features/auth/data/data_sources/local/auth_local_data_source.dart'
     as _i196;
@@ -28,6 +28,8 @@ import 'package:sooqy/features/auth/domain/repositories/auh_repository.dart'
     as _i534;
 import 'package:sooqy/features/auth/domain/use_cases/forgot_password.dart'
     as _i478;
+import 'package:sooqy/features/auth/domain/use_cases/get_current_user.dart'
+    as _i234;
 import 'package:sooqy/features/auth/domain/use_cases/login.dart' as _i683;
 import 'package:sooqy/features/auth/domain/use_cases/register.dart' as _i70;
 import 'package:sooqy/features/auth/domain/use_cases/resend_otp.dart' as _i651;
@@ -96,17 +98,22 @@ import 'package:sooqy/features/reviews/presentation/cubit/review_cubit.dart'
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
-  Future<_i174.GetIt> init({
+  _i174.GetIt init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
-  }) async {
+  }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final registerModule = _$RegisterModule();
-    await gh.factoryAsync<_i460.SharedPreferences>(
-      () => registerModule.sharedPref,
-      preResolve: true,
+    gh.singleton<_i558.FlutterSecureStorage>(
+      () => registerModule.secureStorage,
     );
-    gh.singleton<_i361.Dio>(() => registerModule.dio);
+    gh.singleton<_i196.AuthLocalDataSource>(
+      () =>
+          _i38.AuthSharedPrefLocalDataSource(gh<_i558.FlutterSecureStorage>()),
+    );
+    gh.singleton<_i361.Dio>(
+      () => registerModule.dio(gh<_i196.AuthLocalDataSource>()),
+    );
     gh.lazySingleton<_i883.CategoriesRemoteDataSource>(
       () => _i24.CategoriesRemoteDataSourceImpl(gh<_i361.Dio>()),
     );
@@ -143,9 +150,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i775.CategoryRepository>(
       () =>
           _i810.CategoryRepositoryImpl(gh<_i883.CategoriesRemoteDataSource>()),
-    );
-    gh.singleton<_i196.AuthLocalDataSource>(
-      () => _i38.AuthSharedPrefLocalDataSource(gh<_i460.SharedPreferences>()),
     );
     gh.lazySingleton<_i526.GetCategories>(
       () => _i526.GetCategories(gh<_i775.CategoryRepository>()),
@@ -185,6 +189,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i478.ForgotPassword>(
       () => _i478.ForgotPassword(gh<_i534.AuthRepository>()),
     );
+    gh.singleton<_i234.GetCurrentUser>(
+      () => _i234.GetCurrentUser(gh<_i534.AuthRepository>()),
+    );
     gh.singleton<_i683.Login>(() => _i683.Login(gh<_i534.AuthRepository>()));
     gh.singleton<_i70.Register>(
       () => _i70.Register(gh<_i534.AuthRepository>()),
@@ -213,6 +220,7 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i651.ResendOtp>(),
         gh<_i32.ValidateOtp>(),
         gh<_i412.ResetPassword>(),
+        gh<_i234.GetCurrentUser>(),
       ),
     );
     return this;

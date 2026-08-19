@@ -26,8 +26,6 @@ class NoInternetScreen extends StatelessWidget {
           children: [
             Lottie.asset('assets/animations/No_Connection.json'),
             const SizedBox(height: 20),
-            const Icon(Icons.wifi_off, size: 80),
-            const SizedBox(height: 20),
             const Text(
               'No Internet Connection',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

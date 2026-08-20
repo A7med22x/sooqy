@@ -26,6 +26,7 @@ class CustomTextField extends StatefulWidget {
     this.prefixIcon,
     this.borderBackgroundColor,
     this.suffixIcon,
+    this.enabled,
   });
 
   final TextEditingController? controller;
@@ -47,6 +48,7 @@ class CustomTextField extends StatefulWidget {
   final Widget? suffixIcon;
   final String? Function(String?)? validation;
   final void Function()? onTap;
+  final bool? enabled;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -95,6 +97,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               color: ColorManager.black,
             ).copyWith(fontSize: FontSize.s18),
             obscureText: hidden,
+            enabled: widget.enabled,
             keyboardType: widget.textInputType,
             obscuringCharacter: '*',
             cursorColor: widget.cursorColor ?? ColorManager.black,

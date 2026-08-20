@@ -38,6 +38,9 @@ class IconsAssets {
   static const String filter = '$_iconPath/filter.svg';
   static const String trash = '$_iconPath/trash.svg';
   static const String notification = '$_iconPath/notification.svg';
+  static const String myAccount = '$_iconPath/set1.svg';
+  static const String myOrders = '$_iconPath/set2.svg';
+  static const String order = '$_iconPath/order.svg';
 }
 
 class AnimationsAssets {

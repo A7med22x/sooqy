@@ -15,4 +15,7 @@ class Routes {
   static const viewMore = 'viewMore';
   static const String start = '/start';
   static const String noInternet = 'noInternet';
+  static const String personal = 'personal';
+  static const String orders = 'orders';
+  static const String addAddress = 'addAddress';
 }

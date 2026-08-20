@@ -18,9 +18,10 @@ class Notifications {
   });
 
   factory Notifications.fromJson(Map<String, dynamic> json) => Notifications(
-    items: (json['items'] as List<dynamic>?)
-        ?.map((e) => NotificationModel.fromJson(e as Map<String, dynamic>))
-        .toList() ??
+    items:
+        (json['items'] as List<dynamic>?)
+            ?.map((e) => NotificationModel.fromJson(e as Map<String, dynamic>))
+            .toList() ??
         [],
     page: json['page'] as int?,
     pageSize: json['pageSize'] as int?,

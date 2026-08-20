@@ -21,7 +21,7 @@ class NotificationScreen extends StatelessWidget {
             return LoadingIndicator();
           } else if (state is GetNotificationsError) {
             return ErrorIndicator(state.message);
-          } else if (state is GetNotificationsSuccess ) {
+          } else if (state is GetNotificationsSuccess) {
             final notifications = state.notifications;
             return Scaffold(
               appBar: AppBar(

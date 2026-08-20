@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sooqy/core/resources/color_manager.dart';
 import 'package:sooqy/core/resources/styles_manager.dart';
 import 'package:sooqy/core/routes/routes.dart';
-import 'package:sooqy/core/widgets/custom_elevated_button.dart';
 import 'package:sooqy/features/products/domain/entities/product.dart';
+import 'package:sooqy/features/products/presentation/widgets/add_to_cart_animation_button.dart';
 import 'package:sooqy/features/products/presentation/widgets/product_details_image.dart';
 import 'package:sooqy/features/products/presentation/widgets/product_final_price.dart';
 import 'package:sooqy/features/products/presentation/widgets/product_price_before_discount.dart';
@@ -110,18 +110,9 @@ class ProductDatailsScreen extends StatelessWidget {
                     maxLines: 3,
                   ),
                   SizedBox(height: 8.h),
-                  ProductStockIndicator(stock: product.stock.toString()),
+                  ProductStockIndicator(stock: product.stock.toInt()),
                   Spacer(),
-                  CustomElevatedButton(
-                    prefixIcon: Icon(
-                      Icons.add_shopping_cart,
-                      color: ColorManager.white,
-                      size: 22.0.sp,
-                    ),
-                    label: 'Add To Cart',
-                    onTap: () {},
-                    backgroundColor: ColorManager.primaryColor,
-                  ),
+                  AddToCartButtonWithAnimation(product: product),
                   SizedBox(height: 24.h),
                 ],
               ),

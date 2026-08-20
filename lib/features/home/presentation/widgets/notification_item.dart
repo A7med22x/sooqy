@@ -25,7 +25,12 @@ class NotificationItem extends StatelessWidget {
           color: notification.isRead
               ? ColorManager.transparent
               : ColorManager.lightPrimaryColor.withValues(alpha: 0.1),
-          border: Border.all(color: notification.isRead ? ColorManager.gradiant1 : ColorManager.primaryColor, width: 2),
+          border: Border.all(
+            color: notification.isRead
+                ? ColorManager.gradiant1
+                : ColorManager.primaryColor,
+            width: 2,
+          ),
         ),
         child: Row(
           mainAxisAlignment: .spaceBetween,

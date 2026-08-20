@@ -6,7 +6,7 @@ import 'package:sooqy/core/resources/styles_manager.dart';
 
 class ProductStockIndicator extends StatelessWidget {
   const ProductStockIndicator({super.key, required this.stock});
-  final String stock;
+  final int stock;
 
   @override
   Widget build(BuildContext context) {

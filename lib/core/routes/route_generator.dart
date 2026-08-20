@@ -25,14 +25,10 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (context) => const OnboardingScreen(),
         );
-        case Routes.start:
-  return MaterialPageRoute(
-    builder: (_) => const StartScreen(),
-  );
+      case Routes.start:
+        return MaterialPageRoute(builder: (_) => const StartScreen());
       case Routes.noInternet:
-        return MaterialPageRoute(
-          builder: (_) => const NoInternetScreen(),
-        );
+        return MaterialPageRoute(builder: (_) => const NoInternetScreen());
       case Routes.login:
         return MaterialPageRoute(builder: (context) => const LoginScreen());
       case Routes.register:
@@ -91,4 +87,3 @@ class RouteGenerator {
     }
   }
 }
-

@@ -6,7 +6,11 @@ import 'package:sooqy/features/products/domain/entities/product.dart';
 import 'package:sooqy/features/products/presentation/widgets/products_list_view.dart';
 
 class ViewMoreScreen extends StatelessWidget {
-  const ViewMoreScreen({super.key, required this.title, required this.products});
+  const ViewMoreScreen({
+    super.key,
+    required this.title,
+    required this.products,
+  });
 
   final String title;
   final List<Product> products;
@@ -24,16 +28,16 @@ class ViewMoreScreen extends StatelessWidget {
           ),
         ),
       ),
-      body:Padding(
-              padding: EdgeInsetsGeometry.symmetric(horizontal: 16.w),
-              child: Column(
-                children: [
-                  SizedBox(height: 16.h),
-                  Expanded(child: ProductsListView(products: products)),
-                  SizedBox(height: 16.h),
-                ],
-              ),
-      )
+      body: Padding(
+        padding: EdgeInsetsGeometry.symmetric(horizontal: 16.w),
+        child: Column(
+          children: [
+            SizedBox(height: 16.h),
+            Expanded(child: ProductsListView(products: products)),
+            SizedBox(height: 16.h),
+          ],
+        ),
+      ),
     );
   }
 }

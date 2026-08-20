@@ -59,7 +59,9 @@ class HomeApiRemoteDataSource implements HomeRemoteDataSource {
   }
 
   @override
-  Future<void> markAllNotificationsAsRead({required List<String> notiIds}) async {
+  Future<void> markAllNotificationsAsRead({
+    required List<String> notiIds,
+  }) async {
     try {
       await _dio.post(
         '${APIConstants.notificationsEndpoint}/bulk-read',
@@ -70,7 +72,9 @@ class HomeApiRemoteDataSource implements HomeRemoteDataSource {
       if (exception is DioException) {
         message = ErrorHelper.getMessage(exception.response?.data);
       }
-      throw RemoteException(message ?? 'Failed to mark all Notifications as Read');
+      throw RemoteException(
+        message ?? 'Failed to mark all Notifications as Read',
+      );
     }
   }
 }

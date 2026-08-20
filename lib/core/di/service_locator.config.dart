@@ -40,6 +40,23 @@ import 'package:sooqy/features/auth/domain/use_cases/verify_email.dart'
     as _i174;
 import 'package:sooqy/features/auth/presentation/cubit/auth_cubit.dart'
     as _i445;
+import 'package:sooqy/features/cart/data/data_sources/remote/cart_api_remote_data_source.dart'
+    as _i196;
+import 'package:sooqy/features/cart/data/data_sources/remote/cart_remote_data_source.dart'
+    as _i940;
+import 'package:sooqy/features/cart/data/repositories/cart_repository_impl.dart'
+    as _i37;
+import 'package:sooqy/features/cart/domain/repositories/cart_repository.dart'
+    as _i760;
+import 'package:sooqy/features/cart/domain/use_cases/add_item_to_cart.dart'
+    as _i598;
+import 'package:sooqy/features/cart/domain/use_cases/decrease_item_in_cart.dart'
+    as _i110;
+import 'package:sooqy/features/cart/domain/use_cases/get_cart.dart' as _i235;
+import 'package:sooqy/features/cart/domain/use_cases/remove_item_from_cart.dart'
+    as _i91;
+import 'package:sooqy/features/cart/presentation/cubit/cart_cubit.dart'
+    as _i625;
 import 'package:sooqy/features/categories/data/data_sources/remote/categories_remote_data_source.dart'
     as _i883;
 import 'package:sooqy/features/categories/data/data_sources/remote/categories_remote_data_source_impl.dart'
@@ -120,6 +137,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i490.AuthRemoteDataSource>(
       () => _i186.AuthApiRemoteDataSource(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i940.CartRemoteDataSource>(
+      () => _i196.CartAPIRemoteDataSource(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i903.ProductsRemoteDataSource>(
       () => _i441.ProductsRemoteDataSourceImpl(gh<_i361.Dio>()),
     );
@@ -147,6 +167,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i368.ReadNotification>(
       () => _i368.ReadNotification(gh<_i942.HomeRepository>()),
     );
+    gh.lazySingleton<_i760.CartRepository>(
+      () => _i37.CartRepositoryImpl(gh<_i940.CartRemoteDataSource>()),
+    );
     gh.lazySingleton<_i775.CategoryRepository>(
       () =>
           _i810.CategoryRepositoryImpl(gh<_i883.CategoriesRemoteDataSource>()),
@@ -162,6 +185,18 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i492.ReviewRepository>(
       () => _i369.ReviewRepositoryImpl(gh<_i532.ReviewRemoteDataSource>()),
+    );
+    gh.lazySingleton<_i598.AddItemToCart>(
+      () => _i598.AddItemToCart(gh<_i760.CartRepository>()),
+    );
+    gh.lazySingleton<_i110.DecreaseItemInCart>(
+      () => _i110.DecreaseItemInCart(gh<_i760.CartRepository>()),
+    );
+    gh.lazySingleton<_i235.GetCart>(
+      () => _i235.GetCart(gh<_i760.CartRepository>()),
+    );
+    gh.lazySingleton<_i91.RemoveItemFromCart>(
+      () => _i91.RemoveItemFromCart(gh<_i760.CartRepository>()),
     );
     gh.lazySingleton<_i212.AddReview>(
       () => _i212.AddReview(gh<_i492.ReviewRepository>()),
@@ -210,6 +245,14 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i77.ReviewCubit>(
       () => _i77.ReviewCubit(gh<_i315.GetReviews>(), gh<_i212.AddReview>()),
+    );
+    gh.lazySingleton<_i625.CartCubit>(
+      () => _i625.CartCubit(
+        gh<_i598.AddItemToCart>(),
+        gh<_i235.GetCart>(),
+        gh<_i91.RemoveItemFromCart>(),
+        gh<_i110.DecreaseItemInCart>(),
+      ),
     );
     gh.singleton<_i445.AuthCubit>(
       () => _i445.AuthCubit(

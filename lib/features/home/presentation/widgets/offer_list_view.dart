@@ -21,10 +21,7 @@ class OfferListView extends StatelessWidget {
         } else if (state is GetOffersSuccess) {
           final offers = state.offers.reversed.toList();
           return CarouselSlider(
-            options: CarouselOptions(
-              viewportFraction: 1,
-              autoPlay: true,
-            ),
+            options: CarouselOptions(viewportFraction: 1, autoPlay: true),
             items: offers.map((offer) => OfferCard(offer: offer)).toList(),
           );
         } else {

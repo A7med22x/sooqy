@@ -8,6 +8,7 @@ import 'package:sooqy/core/di/service_locator.dart';
 import 'package:sooqy/core/routes/route_generator.dart';
 import 'package:sooqy/core/routes/routes.dart';
 import 'package:sooqy/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:sooqy/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:sooqy/features/products/presentation/cubit/product_cubit.dart';
 
 Future<void> main() async {
@@ -26,6 +27,7 @@ class SooqyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => serviceLocator.get<AuthCubit>()),
+        BlocProvider(create: (_) => serviceLocator.get<CartCubit>()..getCart()),
         BlocProvider(create: (_) => serviceLocator.get<ProductCubit>()),
       ],
       child: ScreenUtilInit(

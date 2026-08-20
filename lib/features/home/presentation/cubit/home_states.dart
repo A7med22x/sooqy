@@ -28,5 +28,3 @@ class GetNotificationsError extends HomeState {
   final String message;
   GetNotificationsError(this.message);
 }
-
-

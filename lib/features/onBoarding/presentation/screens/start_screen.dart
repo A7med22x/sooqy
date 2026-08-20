@@ -21,16 +21,12 @@ class _StartScreenState extends State<StartScreen> {
   }
 
   Future<void> _start() async {
-    final hasInternet =
-        await InternetConnection().hasInternetAccess;
+    final hasInternet = await InternetConnection().hasInternetAccess;
 
     if (!hasInternet) {
       if (!mounted) return;
 
-      Navigator.pushReplacementNamed(
-        context,
-        Routes.noInternet,
-      );
+      Navigator.pushReplacementNamed(context, Routes.noInternet);
 
       return;
     }
@@ -45,10 +41,7 @@ class _StartScreenState extends State<StartScreen> {
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthAuthenticated) {
-          Navigator.pushReplacementNamed(
-            context,
-            Routes.home,
-          );
+          Navigator.pushReplacementNamed(context, Routes.home);
         }
 
         if (state is AuthUnauthenticated) {
@@ -56,17 +49,10 @@ class _StartScreenState extends State<StartScreen> {
               ? Routes.login
               : Routes.onBoarding;
 
-          Navigator.pushReplacementNamed(
-            context,
-            route,
-          );
+          Navigator.pushReplacementNamed(context, route);
         }
       },
-      child: const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      ),
+      child: const Scaffold(body: Center(child: CircularProgressIndicator())),
     );
   }
 }

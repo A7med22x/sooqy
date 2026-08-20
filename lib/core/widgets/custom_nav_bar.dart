@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:sooqy/core/resources/assets_manager.dart';
 import 'package:sooqy/core/resources/color_manager.dart';
 import 'package:sooqy/core/resources/styles_manager.dart';
+import 'package:sooqy/features/cart/presentation/cubit/cart_cubit.dart';
 
 class CustomButtomNavBar extends StatefulWidget {
   final ValueChanged<int> onTap;
@@ -79,7 +81,7 @@ class _CustomButtomNavBarState extends State<CustomButtomNavBar> {
     required String activeIcon,
   }) {
     final isCart = title == 'Cart';
-    final cartCount = 15;
+    final cartCount = context.watch<CartCubit>().totalCount;
 
     return SalomonBottomBarItem(
       icon: SizedBox(

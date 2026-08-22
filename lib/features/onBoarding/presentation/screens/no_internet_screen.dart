@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:lottie/lottie.dart';
+import 'package:sooqy/core/resources/color_manager.dart';
 import 'package:sooqy/core/routes/routes.dart';
 import 'package:sooqy/core/widgets/custom_elevated_button.dart';
 
@@ -34,6 +35,9 @@ class NoInternetScreen extends StatelessWidget {
             const Text('Please check your internet connection.'),
             const SizedBox(height: 30),
             CustomElevatedButton(
+              isStadiumBorder: false,
+              innerPadding: const EdgeInsets.all(16),
+              backgroundColor: ColorManager.primaryColor,
               outerPadding: const EdgeInsets.all(16),
               onTap: () => _refresh(context),
               label: 'Refresh',

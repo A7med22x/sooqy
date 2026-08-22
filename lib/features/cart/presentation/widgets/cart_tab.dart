@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sooqy/core/resources/color_manager.dart';
 import 'package:sooqy/core/resources/styles_manager.dart';
+import 'package:sooqy/core/routes/routes.dart';
 import 'package:sooqy/core/utils/ui_utils.dart';
 import 'package:sooqy/core/widgets/custom_elevated_button.dart';
 import 'package:sooqy/core/widgets/error_indicator.dart';
@@ -57,7 +58,9 @@ class CartTab extends StatelessWidget {
             Expanded(child: _buildCartList(state, items)),
             CustomElevatedButton(
               label: 'Checkout $totalPrice EGP',
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pushNamed(Routes.checkout);
+              },
               isStadiumBorder: false,
               outerPadding: const EdgeInsets.all(16),
               backgroundColor: (items.isEmpty)

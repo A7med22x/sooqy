@@ -23,4 +23,6 @@ class ColorManager {
   static const Color productColor = Color(0xffF3F5F7);
   static const Color productColorDark = Color(0xff171717);
   static const Color backgroundDark = Color(0xff0D0D0D);
+  static const Color blueAccent = Colors.blueAccent;
+  static const Color redAccent = Colors.redAccent;
 }

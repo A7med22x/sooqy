@@ -18,4 +18,5 @@ class Routes {
   static const String personal = 'personal';
   static const String orders = 'orders';
   static const String addAddress = 'addAddress';
+  static const String checkout = 'checkout';
 }

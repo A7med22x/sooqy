@@ -73,19 +73,20 @@ class _AddToCartButtonWithAnimationState
     final canAdd = widget.product.stock > 0 && quantity < widget.product.stock;
 
     return SizedBox(
-      height: 52.h,
+      height: 60.h,
       child: Stack(
         children: [
           AnimatedContainer(
+            padding: const EdgeInsets.all(16),
             duration: const Duration(milliseconds: 300),
             curve: Curves.easeInOut,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: canAdd ? ColorManager.grey : ColorManager.primaryColor,
-              borderRadius: BorderRadius.circular(26.r),
+              color: canAdd ? ColorManager.primaryColor : ColorManager.greyColor,
+              borderRadius: BorderRadius.circular(12),
             ),
             child: Material(
-              color: Colors.transparent,
+              color: ColorManager.transparent,
               child: InkWell(
                 borderRadius: BorderRadius.circular(26.r),
                 onTap: canAdd ? _addToCart : null,
@@ -112,7 +113,7 @@ class _AddToCartButtonWithAnimationState
                     quantity.toString(),
                     style: getSemiBoldStyle(
                       color: ColorManager.primaryColor,
-                      fontSize: 13.sp,
+                      fontSize: 14,
                     ),
                   ),
                 ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sooqy/features/checkout/presentation/screens/add_address_screen.dart';
+import 'package:sooqy/features/checkout/presentation/screens/checkout_screen.dart';
 import 'package:sooqy/features/home/presentation/screens/notification_screen.dart';
 import 'package:sooqy/features/home/presentation/screens/view_more_screen.dart';
 import 'package:sooqy/features/onBoarding/presentation/screens/no_internet_screen.dart';
@@ -83,6 +85,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (context) => const PersonalScreen());
       case Routes.orders:
         return MaterialPageRoute(builder: (context) => const OrdersScreen());
+      case Routes.checkout:
+        return MaterialPageRoute(builder: (context) => const CheckoutScreen());
+      case Routes.addAddress:
+        return MaterialPageRoute(builder: (context) => const AddAddressScreen());
       case Routes.review:
         final product = settings.arguments as Product;
         return MaterialPageRoute(

@@ -41,6 +41,7 @@ class IconsAssets {
   static const String myAccount = '$_iconPath/set1.svg';
   static const String myOrders = '$_iconPath/set2.svg';
   static const String order = '$_iconPath/order.svg';
+  static const String location = '$_iconPath/location.svg';
 }
 
 class AnimationsAssets {

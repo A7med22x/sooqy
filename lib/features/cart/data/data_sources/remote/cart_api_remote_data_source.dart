@@ -59,10 +59,7 @@ class CartAPIRemoteDataSource implements CartRemoteDataSource {
     try {
       await _dio.post(
         APIConstants.decreme1FromItemInCartEndpoint,
-        data: {
-          'itemId': itemId,
-          'quantity': 1,
-        },
+        data: {'itemId': itemId, 'quantity': 1},
       );
     } catch (exception) {
       String? message;

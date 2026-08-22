@@ -31,6 +31,7 @@ import 'package:sooqy/features/auth/domain/use_cases/forgot_password.dart'
 import 'package:sooqy/features/auth/domain/use_cases/get_current_user.dart'
     as _i234;
 import 'package:sooqy/features/auth/domain/use_cases/login.dart' as _i683;
+import 'package:sooqy/features/auth/domain/use_cases/logout.dart' as _i608;
 import 'package:sooqy/features/auth/domain/use_cases/register.dart' as _i70;
 import 'package:sooqy/features/auth/domain/use_cases/resend_otp.dart' as _i651;
 import 'package:sooqy/features/auth/domain/use_cases/reset_password.dart'
@@ -98,6 +99,18 @@ import 'package:sooqy/features/products/domain/use_cases/get_products.dart'
     as _i434;
 import 'package:sooqy/features/products/presentation/cubit/product_cubit.dart'
     as _i753;
+import 'package:sooqy/features/profile/data/data_sources/profile_api_remote_data_source.dart'
+    as _i694;
+import 'package:sooqy/features/profile/data/data_sources/profile_remote_data_source.dart'
+    as _i157;
+import 'package:sooqy/features/profile/data/repositories/profile_repository_impl.dart'
+    as _i446;
+import 'package:sooqy/features/profile/domain/repositories/profile_repository.dart'
+    as _i656;
+import 'package:sooqy/features/profile/domain/use_cases/get_orders.dart'
+    as _i214;
+import 'package:sooqy/features/profile/presentation/cubit/profile_cubit.dart'
+    as _i195;
 import 'package:sooqy/features/reviews/data/data_sources/remote/review_api_remote_data_source.dart'
     as _i578;
 import 'package:sooqy/features/reviews/data/data_sources/remote/review_remote_data_source.dart'
@@ -134,6 +147,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i883.CategoriesRemoteDataSource>(
       () => _i24.CategoriesRemoteDataSourceImpl(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i157.ProfileRemoteDataSource>(
+      () => _i694.ProfileApiRemoteDataSource(gh<_i361.Dio>()),
+    );
     gh.singleton<_i490.AuthRemoteDataSource>(
       () => _i186.AuthApiRemoteDataSource(gh<_i361.Dio>()),
     );
@@ -152,8 +168,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i942.HomeRepository>(
       () => _i968.HomeRepositoryImpl(gh<_i728.HomeRemoteDataSource>()),
     );
+    gh.lazySingleton<_i656.ProfileRepository>(
+      () => _i446.ProfileRepositoryImpl(gh<_i157.ProfileRemoteDataSource>()),
+    );
     gh.lazySingleton<_i205.ProductRepository>(
       () => _i189.ProductRepositoryImpl(gh<_i903.ProductsRemoteDataSource>()),
+    );
+    gh.lazySingleton<_i214.GetOrders>(
+      () => _i214.GetOrders(gh<_i656.ProfileRepository>()),
     );
     gh.lazySingleton<_i268.GetNotifications>(
       () => _i268.GetNotifications(gh<_i942.HomeRepository>()),
@@ -185,6 +207,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i492.ReviewRepository>(
       () => _i369.ReviewRepositoryImpl(gh<_i532.ReviewRemoteDataSource>()),
+    );
+    gh.factory<_i195.ProfileCubit>(
+      () => _i195.ProfileCubit(gh<_i214.GetOrders>()),
     );
     gh.lazySingleton<_i598.AddItemToCart>(
       () => _i598.AddItemToCart(gh<_i760.CartRepository>()),
@@ -221,6 +246,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i421.CategoryCubit>(
       () => _i421.CategoryCubit(gh<_i526.GetCategories>()),
     );
+    gh.lazySingleton<_i608.Logout>(
+      () => _i608.Logout(gh<_i534.AuthRepository>()),
+    );
     gh.singleton<_i478.ForgotPassword>(
       () => _i478.ForgotPassword(gh<_i534.AuthRepository>()),
     );
@@ -243,17 +271,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i174.VerifyEmail>(
       () => _i174.VerifyEmail(gh<_i534.AuthRepository>()),
     );
-    gh.lazySingleton<_i77.ReviewCubit>(
-      () => _i77.ReviewCubit(gh<_i315.GetReviews>(), gh<_i212.AddReview>()),
-    );
-    gh.lazySingleton<_i625.CartCubit>(
-      () => _i625.CartCubit(
-        gh<_i598.AddItemToCart>(),
-        gh<_i235.GetCart>(),
-        gh<_i91.RemoveItemFromCart>(),
-        gh<_i110.DecreaseItemInCart>(),
-      ),
-    );
     gh.singleton<_i445.AuthCubit>(
       () => _i445.AuthCubit(
         gh<_i70.Register>(),
@@ -264,6 +281,18 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i32.ValidateOtp>(),
         gh<_i412.ResetPassword>(),
         gh<_i234.GetCurrentUser>(),
+        gh<_i608.Logout>(),
+      ),
+    );
+    gh.lazySingleton<_i77.ReviewCubit>(
+      () => _i77.ReviewCubit(gh<_i315.GetReviews>(), gh<_i212.AddReview>()),
+    );
+    gh.lazySingleton<_i625.CartCubit>(
+      () => _i625.CartCubit(
+        gh<_i598.AddItemToCart>(),
+        gh<_i235.GetCart>(),
+        gh<_i91.RemoveItemFromCart>(),
+        gh<_i110.DecreaseItemInCart>(),
       ),
     );
     return this;

@@ -85,3 +85,14 @@ class AuthAuthenticated extends AuthState {
 }
 
 class AuthUnauthenticated extends AuthState {}
+
+
+
+class LogoutLoading extends AuthState {}
+
+class LogoutSuccess extends AuthState {}
+
+class LogoutError extends AuthState {
+  final String message;
+  LogoutError(this.message);
+}

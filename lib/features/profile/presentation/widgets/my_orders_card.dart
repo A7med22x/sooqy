@@ -3,9 +3,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:sooqy/core/resources/assets_manager.dart';
 import 'package:sooqy/core/resources/color_manager.dart';
 import 'package:sooqy/core/resources/styles_manager.dart';
+import 'package:sooqy/features/profile/domain/entities/order_data.dart';
 
 class MyOrderCard extends StatefulWidget {
-  const MyOrderCard({super.key});
+  const MyOrderCard({super.key, required this.order});
+
+  final OrderData order;
 
   @override
   State<MyOrderCard> createState() => _MyOrderCardState();
@@ -33,7 +36,6 @@ class _MyOrderCardState extends State<MyOrderCard> {
           ),
           child: Column(
             children: [
-              // UI before expanded
               Row(
                 children: [
                   SvgPicture.asset(IconsAssets.order),
@@ -46,7 +48,7 @@ class _MyOrderCardState extends State<MyOrderCard> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Order Number : ',
+                              'Order Number : ${widget.order.orderCode}',
                               style: getBoldStyle(
                                 color: ColorManager.black,
                                 fontSize: 16,
@@ -69,7 +71,7 @@ class _MyOrderCardState extends State<MyOrderCard> {
                           ],
                         ),
                         Text(
-                          "Order Date: ",
+                          "Order Date: ${widget.order.createdAt.toString().split(' ').first}",
                           style: getRegularStyle(
                             color: ColorManager.grey,
                             fontSize: 13,
@@ -82,7 +84,7 @@ class _MyOrderCardState extends State<MyOrderCard> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "totalPrice EGP",
+                              "${widget.order.totalPrice.toStringAsFixed(2)} EGP",
                               style: getBoldStyle(
                                 color: ColorManager.black,
                                 fontSize: 16,
@@ -99,7 +101,7 @@ class _MyOrderCardState extends State<MyOrderCard> {
                                 ),
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: Text('status'),
+                              child: Text(widget.order.status),
                             ),
                           ],
                         ),
@@ -116,25 +118,19 @@ class _MyOrderCardState extends State<MyOrderCard> {
                     ? Column(
                         children: [
                           const SizedBox(height: 12),
-                          const Divider(thickness: 2,),
+                          const Divider(thickness: 2),
                           const SizedBox(height: 4),
                           ExpandedInfoCard(
                             title: 'payment method',
-                            date: 'paymentMethod',
+                            date: widget.order.paymentMethod,
                           ),
                           ExpandedInfoCard(
                             title: 'Order placed',
-                            date: 'createdAt'
-                                .toString()
-                                .split(' ')
-                                .first,
+                            date: widget.order.createdAt.toString().split(' ').first,
                           ),
                           ExpandedInfoCard(
                             title: 'Delivery in progress',
-                            date: 'updatedAt'
-                                .toString()
-                                .split(' ')
-                                .first,
+                            date: widget.order.updatedAt.toString().split(' ').first,
                           ),
                           const ExpandedInfoCard(
                             title: 'Delivered',

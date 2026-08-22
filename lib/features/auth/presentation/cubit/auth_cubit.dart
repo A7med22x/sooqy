@@ -11,6 +11,7 @@ import 'package:sooqy/features/auth/domain/entities/user.dart';
 import 'package:sooqy/features/auth/domain/use_cases/forgot_password.dart';
 import 'package:sooqy/features/auth/domain/use_cases/get_current_user.dart';
 import 'package:sooqy/features/auth/domain/use_cases/login.dart';
+import 'package:sooqy/features/auth/domain/use_cases/logout.dart';
 import 'package:sooqy/features/auth/domain/use_cases/register.dart';
 import 'package:sooqy/features/auth/domain/use_cases/resend_otp.dart';
 import 'package:sooqy/features/auth/domain/use_cases/reset_password.dart';
@@ -30,6 +31,7 @@ class AuthCubit extends Cubit<AuthState> {
   final ResendOtp _resendOtp;
   final ValidateOtp _validateOtp;
   final ResetPassword _resetPassword;
+  final Logout _logout;
 
   AuthCubit(
     this._register,
@@ -40,6 +42,7 @@ class AuthCubit extends Cubit<AuthState> {
     this._validateOtp,
     this._resetPassword,
     this._getCurrentUser,
+    this._logout,
   ) : super(AuthInitial());
 
   Future<void> register(RegisterRequest request) async {
@@ -133,6 +136,18 @@ class AuthCubit extends Cubit<AuthState> {
     result.fold(
       (failure) => emit(ResetPasswordError(failure.message)),
       (_) => emit(ResetPasswordSuccess()),
+    );
+  }
+
+  Future<void> logout() async {
+    emit(LogoutLoading());
+    final result = await _logout();
+    result.fold(
+      (failure) => emit(LogoutError(failure.message)),
+      (_) async {
+      user = null;
+      emit(LogoutSuccess());
+    },
     );
   }
 }

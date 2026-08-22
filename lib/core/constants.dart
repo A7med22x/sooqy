@@ -20,6 +20,8 @@ class APIConstants {
   static const String increme1ToItemInCartEndpoint = 'cart/items';
   static const String decreme1FromItemInCartEndpoint = 'cart/items/decrement';
   static const String removeItemFromCartEndpoint = 'cart/items/';
+  static const String getOrdersEndpoint = 'orders';
+  static const String logoutEndpoint  = 'auth/logout';
 }
 
 class CacheKeys {

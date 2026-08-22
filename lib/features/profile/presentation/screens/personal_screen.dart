@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sooqy/core/resources/color_manager.dart';
 import 'package:sooqy/core/resources/styles_manager.dart';
 import 'package:sooqy/core/routes/routes.dart';
 import 'package:sooqy/core/widgets/custom_text_field.dart';
+import 'package:sooqy/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:sooqy/features/profile/presentation/widgets/user_address_card.dart';
 
 class PersonalScreen extends StatelessWidget {
@@ -37,6 +39,8 @@ class UserInfoColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<AuthCubit>().user;
+    
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -48,8 +52,8 @@ class UserInfoColumn extends StatelessWidget {
             'Personal Informations',
             style: getSemiBoldStyle(color: ColorManager.black, fontSize: 16),
           ),
-          CustomTextField(hint: "userInfoModel?.fullName", enabled: false),
-          CustomTextField(hint: "userInfoModel?.email", enabled: false),
+          CustomTextField(hint: user!.fullName, enabled: false),
+          CustomTextField(hint: user.email, enabled: false),
 
           const SizedBox(height: 16),
           Row(
@@ -72,10 +76,13 @@ class UserInfoColumn extends StatelessWidget {
                       Icons.edit_location_outlined,
                       color: Colors.grey,
                     ),
-                    const SizedBox(width: 8,),
+                    const SizedBox(width: 8),
                     Text(
                       'Edit',
-                      style: getMediumStyle(color: ColorManager.grey, fontSize: 16),
+                      style: getMediumStyle(
+                        color: ColorManager.grey,
+                        fontSize: 16,
+                      ),
                     ),
                   ],
                 ),

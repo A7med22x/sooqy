@@ -34,6 +34,7 @@ class NoInternetScreen extends StatelessWidget {
             const Text('Please check your internet connection.'),
             const SizedBox(height: 30),
             CustomElevatedButton(
+              outerPadding: const EdgeInsets.all(16),
               onTap: () => _refresh(context),
               label: 'Refresh',
             ),

@@ -19,7 +19,7 @@ class CartRepositoryImpl implements CartRepository {
       await _dataSource.addItemToCart(productId);
       return const Right(null);
     } on RemoteException catch (exception) {
-      return Left(Failure(message: exception.message,));
+      return Left(Failure(message: exception.message));
     }
   }
 
@@ -29,7 +29,7 @@ class CartRepositoryImpl implements CartRepository {
       final response = await _dataSource.getCart();
       return Right(response.items.map((item) => item.toEntity).toList());
     } on RemoteException catch (exception) {
-      return Left(Failure(message: exception.message,));
+      return Left(Failure(message: exception.message));
     }
   }
 
@@ -39,7 +39,7 @@ class CartRepositoryImpl implements CartRepository {
       await _dataSource.decreaseItemInCart(itemId);
       return const Right(null);
     } on RemoteException catch (exception) {
-      return Left(Failure(message: exception.message,));
+      return Left(Failure(message: exception.message));
     }
   }
 
@@ -49,7 +49,7 @@ class CartRepositoryImpl implements CartRepository {
       await _dataSource.removeItemFromCart(itemId);
       return const Right(null);
     } on RemoteException catch (exception) {
-      return Left(Failure(message: exception.message,));
+      return Left(Failure(message: exception.message));
     }
   }
 }

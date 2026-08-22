@@ -6,7 +6,9 @@ import 'package:sooqy/core/resources/assets_manager.dart';
 import 'package:sooqy/core/resources/color_manager.dart';
 import 'package:sooqy/core/resources/styles_manager.dart';
 import 'package:sooqy/core/routes/routes.dart';
+import 'package:sooqy/core/utils/ui_utils.dart';
 import 'package:sooqy/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:sooqy/features/auth/presentation/cubit/auth_states.dart';
 import 'package:sooqy/features/profile/presentation/widgets/setting_item.dart';
 
 class ProfileTab extends StatelessWidget {
@@ -87,27 +89,45 @@ class ProfileTab extends StatelessWidget {
           secPageName: Routes.orders,
         ),
         const Spacer(),
-        InkWell(
-          onTap: () {},
-          child: Container(
-            margin: const EdgeInsets.all(16),
-            padding: const EdgeInsets.all(16),
-            width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: ColorManager.lightPrimaryColor.withValues(alpha: 0.15),
-              border: Border.all(color: ColorManager.gradiant2, width: 1),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Sign Out',
-                  style: getBoldStyle(color: ColorManager.black, fontSize: 16),
-                ),
-                const SizedBox(width: 60),
-                const Icon(Icons.logout_rounded, color: ColorManager.black),
-              ],
+        Container(
+          margin: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            color: ColorManager.lightPrimaryColor.withValues(alpha: 0.15),
+            border: Border.all(color: ColorManager.gradiant2, width: 1),
+          ),
+          child: BlocListener<AuthCubit, AuthState>(
+            listener: (context, state) {
+              if (state is LogoutLoading) {
+                UIUtils.showLoading(context);
+              } else if (state is LogoutSuccess) {
+                UIUtils.hideLoading(context);
+                Navigator.of(context).pushReplacementNamed(Routes.login);
+              } else if (state is LogoutError) {
+                UIUtils.hideLoading(context);
+                UIUtils.showMessage(state.message);
+              }
+            },
+            child: InkWell(
+              onTap: () {
+                context.read<AuthCubit>().logout();
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Sign Out',
+                    style: getBoldStyle(
+                      color: ColorManager.black,
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(width: 60),
+                  const Icon(Icons.logout_rounded, color: ColorManager.black),
+                ],
+              ),
             ),
           ),
         ),

@@ -7,10 +7,7 @@ import 'package:sooqy/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:sooqy/features/products/domain/entities/product.dart';
 
 class AddToCartButtonWithAnimation extends StatefulWidget {
-  const AddToCartButtonWithAnimation({
-    super.key,
-    required this.product,
-  });
+  const AddToCartButtonWithAnimation({super.key, required this.product});
 
   final Product product;
 
@@ -40,7 +37,6 @@ class _AddToCartButtonWithAnimationState
     if (widget.product.stock <= 0) return;
 
     if (quantity >= widget.product.stock) return;
-
 
     setState(() {
       isLoading = true;
@@ -74,8 +70,7 @@ class _AddToCartButtonWithAnimationState
 
     final quantity = cartItem?.quantity ?? 0;
 
-    final canAdd = widget.product.stock > 0 &&
-        quantity < widget.product.stock;
+    final canAdd = widget.product.stock > 0 && quantity < widget.product.stock;
 
     return SizedBox(
       height: 52.h,
@@ -86,9 +81,7 @@ class _AddToCartButtonWithAnimationState
             curve: Curves.easeInOut,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: canAdd
-                  ? ColorManager.grey
-                  : ColorManager.primaryColor,
+              color: canAdd ? ColorManager.grey : ColorManager.primaryColor,
               borderRadius: BorderRadius.circular(26.r),
             ),
             child: Material(
@@ -156,18 +149,11 @@ class _AddToCartButtonWithAnimationState
       key: const ValueKey('idle'),
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(
-          Icons.add_shopping_cart,
-          color: ColorManager.white,
-          size: 22.sp,
-        ),
+        Icon(Icons.add_shopping_cart, color: ColorManager.white, size: 22.sp),
         SizedBox(width: 8.w),
         Text(
           canAdd ? 'Add To Cart' : 'Out of Stock',
-          style: getBoldStyle(
-            color: ColorManager.white,
-            fontSize: 16.sp,
-          ),
+          style: getBoldStyle(color: ColorManager.white, fontSize: 16.sp),
         ),
       ],
     );

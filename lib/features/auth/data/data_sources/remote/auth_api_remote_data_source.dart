@@ -137,4 +137,17 @@ class AuthApiRemoteDataSource implements AuthRemoteDataSource {
       throw RemoteException(message ?? 'Failed to reset password');
     }
   }
+
+  @override
+  Future<void> logout() async {
+    try {
+      await _dio.post(APIConstants.logoutEndpoint);
+    } catch (exception) {
+      String? message;
+      if (exception is DioException) {
+        message = ErrorHelper.getMessage(exception.response?.data);
+      }
+      throw RemoteException(message ?? 'Failed To Logout');
+    }
+  }
 }

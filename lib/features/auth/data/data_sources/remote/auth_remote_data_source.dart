@@ -24,4 +24,6 @@ abstract class AuthRemoteDataSource {
   Future<void> validateOtp(ValidateOtpRequest request);
 
   Future<void> resetPassword(ResetPasswordRequest request);
+
+  Future <void> logout();
 }

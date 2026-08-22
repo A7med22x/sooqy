@@ -57,7 +57,10 @@ class ProductCard extends StatelessWidget {
                 Positioned(
                   bottom: 10.h,
                   left: 10.w,
-                  child: AddToCartFloatingButton(productId: product.id, stock: product.stock.toInt(),),
+                  child: AddToCartFloatingButton(
+                    productId: product.id,
+                    stock: product.stock.toInt(),
+                  ),
                 ),
               ],
             ),

@@ -8,6 +8,5 @@ import 'package:sooqy/features/profile/domain/repositories/profile_repository.da
 class GetOrders {
   final ProfileRepository _repository;
   GetOrders(this._repository);
-  Future<Either<Failure, List<OrderData>>> call() =>
-      _repository.getOrders();
+  Future<Either<Failure, List<OrderData>>> call() => _repository.getOrders();
 }

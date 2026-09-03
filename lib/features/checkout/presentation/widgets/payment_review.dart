@@ -5,7 +5,8 @@ import 'package:sooqy/core/resources/color_manager.dart';
 import 'package:sooqy/core/resources/styles_manager.dart';
 
 class PaymentReview extends StatelessWidget {
-  const PaymentReview({super.key});
+  const PaymentReview({super.key, required this.paymentMethod});
+  final String paymentMethod;
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +20,12 @@ class PaymentReview extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "وسيلة الدفع",
+                  'Payment method',
                   style: getBoldStyle(color: ColorManager.black, fontSize: 14),
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  "دفع عند الاستلام",
+                  paymentMethod,
                   style: getRegularStyle(
                     color: ColorManager.greyColor,
                     fontSize: 16,

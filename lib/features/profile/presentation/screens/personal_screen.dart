@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sooqy/core/resources/color_manager.dart';
 import 'package:sooqy/core/resources/styles_manager.dart';
-import 'package:sooqy/core/routes/routes.dart';
 import 'package:sooqy/core/widgets/custom_text_field.dart';
 import 'package:sooqy/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:sooqy/features/profile/presentation/widgets/user_address_card.dart';
+import 'package:sooqy/core/widgets/address_card.dart';
+import 'package:sooqy/features/checkout/presentation/cubit/checkout_cubit.dart';
 
 class PersonalScreen extends StatelessWidget {
   const PersonalScreen({super.key});
@@ -40,7 +40,8 @@ class UserInfoColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = context.watch<AuthCubit>().user;
-    
+    final addresses = context.watch<CheckoutCubit>().addressesList;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -59,41 +60,30 @@ class UserInfoColumn extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Address',
-                style: getSemiBoldStyle(
-                  color: ColorManager.black,
-                  fontSize: 16,
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, Routes.addAddress);
-                },
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.edit_location_outlined,
-                      color: Colors.grey,
+              Row(
+                children: [
+                  const Icon(Icons.location_on_outlined),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Address',
+                    style: getSemiBoldStyle(
+                      color: ColorManager.black,
+                      fontSize: 16,
                     ),
-                    const SizedBox(width: 8),
-                    Text(
-                      'Edit',
-                      style: getMediumStyle(
-                        color: ColorManager.grey,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ],
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: 2,
+              itemCount: addresses.length,
               itemBuilder: (context, index) {
-                return UserAddressCard();
+                return AddressCard(
+                  isSelected: false,
+                  index: index,
+                  address: addresses[index],
+                );
               },
             ),
           ),

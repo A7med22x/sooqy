@@ -9,9 +9,11 @@ class OrdersResponse {
   factory OrdersResponse.fromJson(Map<String, dynamic> json) {
     return OrdersResponse(
       message: json['message'] as String? ?? '',
-      orders: (json['orders'] as List<dynamic>?)
-          ?.map((e) => OrderModel.fromJson(e as Map<String, dynamic>))
-          .toList() ?? [],
+      orders:
+          (json['orders'] as List<dynamic>?)
+              ?.map((e) => OrderModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
     );
   }
 }

@@ -126,11 +126,17 @@ class _MyOrderCardState extends State<MyOrderCard> {
                           ),
                           ExpandedInfoCard(
                             title: 'Order placed',
-                            date: widget.order.createdAt.toString().split(' ').first,
+                            date: widget.order.createdAt
+                                .toString()
+                                .split(' ')
+                                .first,
                           ),
                           ExpandedInfoCard(
                             title: 'Delivery in progress',
-                            date: widget.order.updatedAt.toString().split(' ').first,
+                            date: widget.order.updatedAt
+                                .toString()
+                                .split(' ')
+                                .first,
                           ),
                           const ExpandedInfoCard(
                             title: 'Delivered',

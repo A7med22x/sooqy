@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sooqy/core/resources/color_manager.dart';
 import 'package:sooqy/core/resources/styles_manager.dart';
 import 'package:sooqy/core/routes/routes.dart';
-import 'package:sooqy/features/checkout/presentation/widgets/address_card.dart';
+import 'package:sooqy/core/widgets/address_card.dart';
+import 'package:sooqy/features/checkout/presentation/cubit/checkout_cubit.dart';
 
 class AddressSectionView extends StatefulWidget {
   const AddressSectionView({super.key});
@@ -16,6 +18,8 @@ class _AddressSectionViewState extends State<AddressSectionView> {
 
   @override
   Widget build(BuildContext context) {
+    final addresses = context.watch<CheckoutCubit>().addressesList;
+
     return Column(
       children: [
         InkWell(
@@ -41,23 +45,30 @@ class _AddressSectionViewState extends State<AddressSectionView> {
             ),
           ),
         ),
-        const SizedBox(height: 12,),
+        const SizedBox(height: 12),
         Expanded(
-                  child: ListView.builder(
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                      onTap: () {
-                        setState(() {
-                          selectedIndex = index;
-                        });
-                      },
-                      child: AddressCard(
-                        index: index,
-                        isSelected: false,
-                      ));
-                    },
-        )),
+          child: ListView.builder(
+            itemCount: addresses.length,
+            itemBuilder: (context, index) {
+              final isSelected = ((index == selectedIndex));
+              return InkWell(
+                onTap: () {
+                  setState(() {
+                    selectedIndex = index;
+                    context.read<CheckoutCubit>().selectAddress(
+                      addresses[index],
+                    );
+                  });
+                },
+                child: AddressCard(
+                  index: index,
+                  isSelected: isSelected,
+                  address: addresses[index],
+                ),
+              );
+            },
+          ),
+        ),
       ],
     );
   }

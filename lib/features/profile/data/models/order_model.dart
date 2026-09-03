@@ -7,7 +7,7 @@ class OrderModel {
   double totalPrice;
   String paymentMethod;
 
-  OrderModel ({
+  OrderModel({
     required this.orderId,
     required this.orderCode,
     required this.createdAt,
@@ -20,7 +20,7 @@ class OrderModel {
   factory OrderModel.fromJson(Map<String, dynamic> json) => OrderModel(
     orderId: json['orderId'] as String? ?? '',
     orderCode: json['orderCode'] as String? ?? '',
-    createdAt: DateTime.parse(json['createdAt'] as String) ,
+    createdAt: DateTime.parse(json['createdAt'] as String),
     updatedAt: DateTime.parse(json['updatedAt'] as String),
     status: json['status'] as String? ?? '',
     totalPrice: json['totalPrice'] as double? ?? 0.0,

@@ -16,7 +16,7 @@ class ProfileApiRemoteDataSource implements ProfileRemoteDataSource {
   Future<OrdersResponse> getOrders() async {
     try {
       final response = await _dio.get(
-        '${APIConstants.getOrdersEndpoint}/?limit=10'
+        '${APIConstants.getOrdersEndpoint}/?limit=10',
       );
       return OrdersResponse.fromJson(response.data);
     } catch (exception) {

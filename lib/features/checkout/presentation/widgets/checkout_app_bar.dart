@@ -12,9 +12,7 @@ class CheckoutAppBar extends StatelessWidget {
     return Stack(
       alignment: Alignment.centerRight,
       children: [
-         Positioned(
-          left: 0,
-          child: const IconsBack()),
+        Positioned(left: 0, child: const IconsBack()),
         Center(
           child: Text(
             title,

@@ -82,7 +82,9 @@ class _AddToCartButtonWithAnimationState
             curve: Curves.easeInOut,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: canAdd ? ColorManager.primaryColor : ColorManager.greyColor,
+              color: canAdd
+                  ? ColorManager.primaryColor
+                  : ColorManager.greyColor,
               borderRadius: BorderRadius.circular(12),
             ),
             child: Material(

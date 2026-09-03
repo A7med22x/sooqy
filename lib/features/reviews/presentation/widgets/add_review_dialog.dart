@@ -4,6 +4,7 @@ import 'package:sooqy/core/resources/assets_manager.dart';
 import 'package:sooqy/core/resources/color_manager.dart';
 import 'package:sooqy/core/resources/styles_manager.dart';
 import 'package:sooqy/core/utils/ui_utils.dart';
+import 'package:sooqy/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:sooqy/features/reviews/data/models/create_review_request.dart';
 import 'package:sooqy/features/reviews/presentation/cubit/review_cubit.dart';
 import 'package:sooqy/features/reviews/presentation/cubit/review_states.dart';
@@ -112,34 +113,33 @@ class AddReviewForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<AuthCubit>().user;
     return Column(
       children: [
         CircleAvatar(
           backgroundColor: Colors.transparent,
           radius: 50,
-          child:
-              // SecureStorage.getUserData().image == null
-              //     ? Image.asset(ImageAssets.profileImage, width: 50)
-              //     :
-              Container(
-                width: 80,
-                height: 80,
-                margin: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: ColorManager.primaryColor,
-                  image: DecorationImage(
-                    image: AssetImage(
-                      ImageAssets.profileImage,
-                      //SecureStorage.getUserData().image!,
+          child: user!.profilePicture == null
+              ? Image.asset(ImageAssets.profileImage, width: 80, height: 80)
+              : Container(
+                  width: 80,
+                  height: 80,
+                  margin: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: ColorManager.primaryColor,
+                    image: DecorationImage(
+                      image: AssetImage(
+                        ImageAssets.profileImage,
+                        //SecureStorage.getUserData().image!,
+                      ),
                     ),
                   ),
                 ),
-              ),
         ),
         const SizedBox(height: 10),
         Text(
-          "SecureStorage.getUserData().name!",
+          user.fullName,
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 10),

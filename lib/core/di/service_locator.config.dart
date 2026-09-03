@@ -70,6 +70,30 @@ import 'package:sooqy/features/categories/domain/use_cases/get_categories.dart'
     as _i526;
 import 'package:sooqy/features/categories/presentation/cubit/category_cubit.dart'
     as _i421;
+import 'package:sooqy/features/checkout/data/data_sources/checkout_api_data_source.dart'
+    as _i116;
+import 'package:sooqy/features/checkout/data/data_sources/checkout_data_sourse.dart'
+    as _i193;
+import 'package:sooqy/features/checkout/data/repositories/checkout_repository_impl.dart'
+    as _i370;
+import 'package:sooqy/features/checkout/domain/repositories/checkout_repository.dart'
+    as _i918;
+import 'package:sooqy/features/checkout/domain/use_cases/add_new_address.dart'
+    as _i944;
+import 'package:sooqy/features/checkout/domain/use_cases/apply_copon.dart'
+    as _i949;
+import 'package:sooqy/features/checkout/domain/use_cases/checkout.dart'
+    as _i856;
+import 'package:sooqy/features/checkout/domain/use_cases/get_addresses.dart'
+    as _i396;
+import 'package:sooqy/features/checkout/domain/use_cases/get_copons.dart'
+    as _i21;
+import 'package:sooqy/features/checkout/domain/use_cases/remove_address.dart'
+    as _i971;
+import 'package:sooqy/features/checkout/domain/use_cases/update_address.dart'
+    as _i493;
+import 'package:sooqy/features/checkout/presentation/cubit/checkout_cubit.dart'
+    as _i68;
 import 'package:sooqy/features/home/data/data_sources/home_api_remote_data_source.dart'
     as _i114;
 import 'package:sooqy/features/home/data/data_sources/home_remote_data_source.dart'
@@ -144,6 +168,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i361.Dio>(
       () => registerModule.dio(gh<_i196.AuthLocalDataSource>()),
     );
+    gh.lazySingleton<_i193.CheckoutDataSourse>(
+      () => _i116.CheckoutApiDataSource(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i883.CategoriesRemoteDataSource>(
       () => _i24.CategoriesRemoteDataSourceImpl(gh<_i361.Dio>()),
     );
@@ -152,6 +179,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i490.AuthRemoteDataSource>(
       () => _i186.AuthApiRemoteDataSource(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i918.CheckoutRepository>(
+      () => _i370.CheckoutRepositoryImpl(gh<_i193.CheckoutDataSourse>()),
     );
     gh.lazySingleton<_i940.CartRemoteDataSource>(
       () => _i196.CartAPIRemoteDataSource(gh<_i361.Dio>()),
@@ -174,6 +204,27 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i205.ProductRepository>(
       () => _i189.ProductRepositoryImpl(gh<_i903.ProductsRemoteDataSource>()),
     );
+    gh.lazySingleton<_i856.Checkout>(
+      () => _i856.Checkout(gh<_i918.CheckoutRepository>()),
+    );
+    gh.lazySingleton<_i493.UpdateAddress>(
+      () => _i493.UpdateAddress(gh<_i918.CheckoutRepository>()),
+    );
+    gh.singleton<_i944.AddNewAddress>(
+      () => _i944.AddNewAddress(gh<_i918.CheckoutRepository>()),
+    );
+    gh.singleton<_i949.ApplyCopon>(
+      () => _i949.ApplyCopon(gh<_i918.CheckoutRepository>()),
+    );
+    gh.singleton<_i396.GetAddresses>(
+      () => _i396.GetAddresses(gh<_i918.CheckoutRepository>()),
+    );
+    gh.singleton<_i21.GetCopons>(
+      () => _i21.GetCopons(gh<_i918.CheckoutRepository>()),
+    );
+    gh.singleton<_i971.RemoveAddress>(
+      () => _i971.RemoveAddress(gh<_i918.CheckoutRepository>()),
+    );
     gh.lazySingleton<_i214.GetOrders>(
       () => _i214.GetOrders(gh<_i656.ProfileRepository>()),
     );
@@ -195,6 +246,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i775.CategoryRepository>(
       () =>
           _i810.CategoryRepositoryImpl(gh<_i883.CategoriesRemoteDataSource>()),
+    );
+    gh.lazySingleton<_i68.CheckoutCubit>(
+      () => _i68.CheckoutCubit(
+        gh<_i396.GetAddresses>(),
+        gh<_i944.AddNewAddress>(),
+        gh<_i493.UpdateAddress>(),
+        gh<_i971.RemoveAddress>(),
+        gh<_i856.Checkout>(),
+        gh<_i949.ApplyCopon>(),
+        gh<_i21.GetCopons>(),
+      ),
     );
     gh.lazySingleton<_i526.GetCategories>(
       () => _i526.GetCategories(gh<_i775.CategoryRepository>()),

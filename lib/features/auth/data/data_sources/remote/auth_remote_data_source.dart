@@ -25,5 +25,5 @@ abstract class AuthRemoteDataSource {
 
   Future<void> resetPassword(ResetPasswordRequest request);
 
-  Future <void> logout();
+  Future<void> logout();
 }

@@ -1,26 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sooqy/core/resources/color_manager.dart';
 import 'package:sooqy/core/resources/styles_manager.dart';
+import 'package:sooqy/features/cart/presentation/cubit/cart_cubit.dart';
+import 'package:sooqy/features/checkout/presentation/cubit/checkout_cubit.dart';
 
 class PriceReview extends StatelessWidget {
   const PriceReview({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final price = context.read<CartCubit>().totalPrice;
+    final delivery = 50.00;
+    final discount = context.read<CheckoutCubit>().discount ?? 0.00;
     return Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "المجموع الفرعي :",
+              'Subtotal',
               style: getRegularStyle(
                 color: ColorManager.greyColor,
                 fontSize: 16,
               ),
             ),
             Text(
-              "5000 EGP",
+              '${price.toStringAsFixed(2)} EGP',
               style: getSemiBoldStyle(
                 color: ColorManager.greyColor,
                 fontSize: 16,
@@ -33,14 +39,14 @@ class PriceReview extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "التوصيل :",
+              "Delivery",
               style: getRegularStyle(
                 color: ColorManager.greyColor,
                 fontSize: 16,
               ),
             ),
             Text(
-              "2000 EGP",
+              "${delivery.toStringAsFixed(2)} EGP",
               style: getRegularStyle(
                 color: ColorManager.greyColor,
                 fontSize: 16,
@@ -53,14 +59,16 @@ class PriceReview extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "الخصم",
+              'Discount',
               style: getRegularStyle(
                 color: ColorManager.greyColor,
                 fontSize: 16,
               ),
             ),
             Text(
-              "لا يوجد خصم",
+              discount == 0.00
+                  ? 'No discount'
+                  : '${discount.toStringAsFixed(2)} EGP',
               style: getRegularStyle(
                 color: ColorManager.greyColor,
                 fontSize: 16,
@@ -74,11 +82,11 @@ class PriceReview extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "الكلي",
+              "Total",
               style: getBoldStyle(color: ColorManager.black, fontSize: 16),
             ),
             Text(
-              "20.00 EGP",
+              "${(price + delivery - discount).toStringAsFixed(2)} EGP",
               style: getBoldStyle(color: ColorManager.black, fontSize: 16),
             ),
           ],

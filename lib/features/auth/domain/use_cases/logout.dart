@@ -7,6 +7,5 @@ import 'package:sooqy/features/auth/domain/repositories/auh_repository.dart';
 class Logout {
   final AuthRepository _repository;
   Logout(this._repository);
-  Future<Either<Failure, void>> call() =>
-      _repository.logout();
+  Future<Either<Failure, void>> call() => _repository.logout();
 }

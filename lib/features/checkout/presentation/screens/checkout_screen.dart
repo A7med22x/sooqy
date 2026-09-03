@@ -6,7 +6,6 @@ class CheckoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: SafeArea(child: CheckoutViewBody())
-    );
+    return const Scaffold(body: SafeArea(child: CheckoutViewBody()));
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sooqy/features/checkout/presentation/cubit/checkout_cubit.dart';
 import 'package:sooqy/features/checkout/presentation/widgets/ship_type.dart';
 
 class ShippingSection extends StatefulWidget {
@@ -10,9 +12,9 @@ class ShippingSection extends StatefulWidget {
 
 class _ShippingSectionState extends State<ShippingSection> {
   int selected = 0;
-
   @override
   void initState() {
+    context.read<CheckoutCubit>().selectPaymentMethod('Paymob');
     super.initState();
   }
 
@@ -23,6 +25,9 @@ class _ShippingSectionState extends State<ShippingSection> {
         InkWell(
           borderRadius: BorderRadius.circular(4),
           onTap: () {
+            context.read<CheckoutCubit>().selectPaymentMethod('Paymob');
+            selected = 0;
+            setState(() {});
           },
           child: ShipTypeCard(
             price: "",
@@ -31,11 +36,13 @@ class _ShippingSectionState extends State<ShippingSection> {
             sel: selected == 0,
           ),
         ),
-        const SizedBox(height: 12,),
+        const SizedBox(height: 12),
         InkWell(
           borderRadius: BorderRadius.circular(4),
           onTap: () {
+            context.read<CheckoutCubit>().selectPaymentMethod('CashOnDelivery');
             selected = 1;
+            setState(() {});
           },
           child: ShipTypeCard(
             price: "",

@@ -21,7 +21,11 @@ class APIConstants {
   static const String decreme1FromItemInCartEndpoint = 'cart/items/decrement';
   static const String removeItemFromCartEndpoint = 'cart/items/';
   static const String getOrdersEndpoint = 'orders';
-  static const String logoutEndpoint  = 'auth/logout';
+  static const String logoutEndpoint = 'auth/logout';
+  static const String addressesEndpoint = 'addresses';
+  static const String checkoutEndpoint = 'orders/checkout';
+  static const String applyCouponEndpoint = 'cart/apply-coupon';
+  static const String getCouponsEndpoint = 'coupons';
 }
 
 class CacheKeys {

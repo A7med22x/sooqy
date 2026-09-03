@@ -39,7 +39,7 @@ class ShipTypeCard extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(width: 10,),
+            const SizedBox(width: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -47,7 +47,7 @@ class ShipTypeCard extends StatelessWidget {
                   title,
                   style: getBoldStyle(color: ColorManager.black, fontSize: 12),
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(height: 10),
                 Text(
                   title2,
                   style: getRegularStyle(

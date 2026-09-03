@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sooqy/features/checkout/domain/entities/address.dart';
 import 'package:sooqy/features/checkout/presentation/screens/add_address_screen.dart';
 import 'package:sooqy/features/checkout/presentation/screens/checkout_screen.dart';
 import 'package:sooqy/features/home/presentation/screens/notification_screen.dart';
@@ -69,7 +70,7 @@ class RouteGenerator {
       case Routes.verifyEmail:
         final email = settings.arguments as String;
         return MaterialPageRoute(
-          builder: (context) => VerifyEmailScreen(email: email),
+          builder: (_) => VerifyEmailScreen(email: email),
         );
       case Routes.categoryProducts:
         final categoryName = settings.arguments as String;
@@ -82,13 +83,16 @@ class RouteGenerator {
           builder: (_) => ProductDatailsScreen(product: product),
         );
       case Routes.personal:
-        return MaterialPageRoute(builder: (context) => const PersonalScreen());
+        return MaterialPageRoute(builder: (_) => const PersonalScreen());
       case Routes.orders:
-        return MaterialPageRoute(builder: (context) => const OrdersScreen());
+        return MaterialPageRoute(builder: (_) => const OrdersScreen());
       case Routes.checkout:
-        return MaterialPageRoute(builder: (context) => const CheckoutScreen());
+        return MaterialPageRoute(builder: (_) => CheckoutScreen());
       case Routes.addAddress:
-        return MaterialPageRoute(builder: (context) => const AddAddressScreen());
+        final address = settings.arguments as Address?;
+        return MaterialPageRoute(
+          builder: (_) => AddAddressScreen(address: address),
+        );
       case Routes.review:
         final product = settings.arguments as Product;
         return MaterialPageRoute(

@@ -7,7 +7,7 @@ class OrderData {
   double totalPrice;
   String paymentMethod;
 
-  OrderData ({
+  OrderData({
     required this.orderId,
     required this.orderCode,
     required this.createdAt,

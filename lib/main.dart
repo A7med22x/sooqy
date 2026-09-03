@@ -9,6 +9,7 @@ import 'package:sooqy/core/routes/route_generator.dart';
 import 'package:sooqy/core/routes/routes.dart';
 import 'package:sooqy/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:sooqy/features/cart/presentation/cubit/cart_cubit.dart';
+import 'package:sooqy/features/checkout/presentation/cubit/checkout_cubit.dart';
 import 'package:sooqy/features/products/presentation/cubit/product_cubit.dart';
 
 Future<void> main() async {
@@ -29,6 +30,9 @@ class SooqyApp extends StatelessWidget {
         BlocProvider(create: (_) => serviceLocator.get<AuthCubit>()),
         BlocProvider(create: (_) => serviceLocator.get<CartCubit>()..getCart()),
         BlocProvider(create: (_) => serviceLocator.get<ProductCubit>()),
+        BlocProvider(
+          create: (_) => serviceLocator.get<CheckoutCubit>()..getAllAddress(),
+        ),
       ],
       child: ScreenUtilInit(
         designSize: const Size(430, 932),
